@@ -1,6 +1,7 @@
-module chain_grow
+module growing
 
   use global
+  use monte_carlo
 
 contains
 
@@ -14,10 +15,10 @@ contains
   end subroutine chain_grow
 
 
-  subroutine add_bead(position, pol_weight, pos_now)
+  recursive subroutine add_bead(position, pol_weight, pos_now)
 
     real(8), intent(inout) :: position(:,:)
-    real(8), intent(in) :: pol_weight
+    real(8), intent(inout) :: pol_weight
     integer, intent(in) :: pos_now
 
     real(8) :: new_weight, new_pos(2)
