@@ -88,9 +88,9 @@ contains
        i = i + 1
        sum_weights = sum_weights + weights(i)
     end do
-    print*, "chosen", i, weights(i)
-    new_pos = possible_pos(:, i)
 
+    new_pos = possible_pos(:, i)
+    print*, "chosen", i, weights(i), new_pos
   end subroutine choose_pos
 
   subroutine init_random_seed()

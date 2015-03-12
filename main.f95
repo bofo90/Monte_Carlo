@@ -11,6 +11,6 @@ program Polymer
 
   !call plot()
 
-  print "(2E10.2)", pos
+  print "(2E20.8)", pos
   
 end program Polymer
