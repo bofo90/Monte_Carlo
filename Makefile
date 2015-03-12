@@ -1,18 +1,20 @@
 FC      = gfortran
 FFLAGS  = -Wall -Wextra -O3 -fimplicit-none -march=native -ffast-math
-#FFLAGS += -pedantic -fbounds-check -fmax-errors=1 -g
-#FFLAGS += $(shell pkg-config --cflags plplotd-f95)
-#LDFLAGS = $(shell pkg-config --libs plplotd-f95)
 LDFLAGS = 
 LIBS    =
+FFLAGS += $(shell pkg-config --cflags plplotd-f95)
+LIBS += $(shell pkg-config --libs plplotd-f95)
+
 
 COMPILE = $(FC) $(FFLAGS)
 LINK = $(FC) $(LDFLAGS)
 
-TARGET = ain.exe       # Name of final executable to produce
-#OBJS = md_plot.o 
+TARGET = polymer.exe       # Name of final executable to produce
 OBJS =
-OBJS += simulation.o # List of object dependencies
+OBJS += global.o # List of object dependencies
+OBJS += monte_carlo.o
+OBJS += chain_grow.o
+OBJS += main.o
 
 $(TARGET): $(OBJS)
 	$(LINK) -o $@ $^ $(LIBS)
