@@ -3,6 +3,8 @@ module growing
   use global
   use monte_carlo
 
+  implicit none
+
 contains
 
   subroutine chain_grow()

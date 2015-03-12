@@ -1,9 +1,16 @@
 program Polymer
+  
+  use global
+  use growing
+  use plotting
 
-use global
-use growing
+  implicit none
+  
+  call init_global()
+  call chain_grow()
 
-call init_global()
-call chain_grow()
+  !call plot()
 
-end program
+  print "(2E10.2)", pos
+  
+end program Polymer
