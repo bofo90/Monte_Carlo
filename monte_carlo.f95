@@ -1,6 +1,5 @@
 module monte_carlo
 
-
   use global
 
   implicit none
@@ -23,6 +22,7 @@ contains
     integer(8) :: i, j
 
     ! Initialize possible positions
+    print *, pos_now-1, position(:,pos_now-1)
     call all_new_pos(position(:,pos_now-1))
 
     new_weight = 0
@@ -31,16 +31,14 @@ contains
        do j = 1, pos_now-1
           distance = possible_pos(:,i)-position(:,j)
           dist2 = dot_product(distance, distance)
-          if(dist2 == 0._8)then
-             energy = energy + N*35 
+          if(dist2 < 0.03*sigma2)then
+             energy = energy + N*1000 
              !ensure that when we increase N this value will increase
           else
-             energy = energy + 4d0*eps*((sigma2/dist2)**6d0 - (sigma2/dist2)**3d0)
+             energy = energy + 4d0*beta*eps*((sigma2/dist2)**6d0 - (sigma2/dist2)**3d0)
           end if
-          !print*, j, dist2
        end do
-       print*, pos_now-1 , i,  energy
-       energy = beta*energy
+       !print*, pos_now-1 , i,  energy
        ! Cut the energy to avoid underflow
        if (energy .GE. 35) then
           weights(i) = 0
@@ -48,12 +46,12 @@ contains
           weights(i) = exp(-energy)
           new_weight = new_weight + weights(i)
        end if
-       print*, "weight", weights(i)
+       print*, "weight", i, weights(i)
     end do
 
     ! Normalize the weights
     weights = weights / new_weight
-
+    
     call choose_pos(new_pos)
 
   end subroutine weight_calc

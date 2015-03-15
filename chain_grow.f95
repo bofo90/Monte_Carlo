@@ -14,6 +14,8 @@ contains
 
     call add_bead(pos, pol_weight, L)
 
+    print "(2E20.8)", pol_weight
+
   end subroutine chain_grow
 
 
