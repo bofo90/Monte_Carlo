@@ -18,4 +18,8 @@ contains
 
   end subroutine r_statistics
 
+  subroutine gyration_r()
+
+  end subroutine gyration_r
+
 end module physics

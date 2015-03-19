@@ -13,10 +13,11 @@ contains
 
   subroutine chain_grow()
     
-    real(8) :: pol_weight = 1
+    real(8) :: pol_weight
     integer :: L = 3
 
    ! tot_weight = 0._8
+    pol_weight = 1
     call add_bead(pos, pol_weight, L)
 
   end subroutine chain_grow
