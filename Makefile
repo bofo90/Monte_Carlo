@@ -14,6 +14,7 @@ TARGET = polymer.exe # Name of final executable to produce
 OBJS =
 OBJS += global.o # List of object dependencies
 OBJS += monte_carlo.o
+OBJS += output_file.o
 OBJS += physics.o
 OBJS += chain_grow.o
 OBJS += plotting.o

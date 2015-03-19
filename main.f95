@@ -3,6 +3,7 @@ program Polymer
   use global
   use growing
   use plotting
+  use output_file
 
   implicit none
 
@@ -15,6 +16,10 @@ program Polymer
     call r_statistics()
     print *, i
   end do
+
+  call init_files("test")
+  call write_rsqr
+  call close_files
 
   !call plot()
   

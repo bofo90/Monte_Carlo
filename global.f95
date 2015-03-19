@@ -12,7 +12,7 @@ contains
     subroutine init_global
 
         N = 250
-        N_RUNS = 1000
+        N_RUNS = 100
         beta = 1._8
         allocate(pos(2,N))
         allocate(rsqr(N))
