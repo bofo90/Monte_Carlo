@@ -16,7 +16,6 @@ contains
        rsqr(N) = rsqr(N) * sum_weight(N)
     end do
 
-
   end subroutine r_statistics
 
 end module physics
