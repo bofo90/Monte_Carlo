@@ -6,4 +6,8 @@
 *.txt
 *.png
 *.gnu~
+<<<<<<< HEAD
 *.dat
+=======
+*.dat
+>>>>>>> f39c95dddeef428e18c662a719b1d0d22bcb7129

@@ -40,8 +40,6 @@ contains
     if (pos_now < N .AND. pol_weight > 0._8) then
        call add_bead(position, pol_weight, pos_now+1)
        ! putt it on file
-    else
-      print *, pos_now, pol_weight
     end if
 
   end subroutine add_bead
