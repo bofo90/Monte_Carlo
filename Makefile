@@ -14,6 +14,7 @@ TARGET = polymer.exe # Name of final executable to produce
 OBJS =
 OBJS += global.o # List of object dependencies
 OBJS += monte_carlo.o
+OBJS += physics.o
 OBJS += chain_grow.o
 OBJS += plotting.o
 OBJS += main.o
@@ -23,3 +24,7 @@ $(TARGET): $(OBJS)
 
 %.o:%.f95
 	$(COMPILE) -c $<
+
+.PHONY:clean
+clean:
+	rm -r *.mod *.exe *.o

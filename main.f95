@@ -8,6 +8,7 @@ program Polymer
   
   call init_global()
   call chain_grow()
+  call r_statistics()
 
   !call plot()
 
