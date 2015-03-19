@@ -22,7 +22,6 @@ contains
     integer(8) :: i, j
 
     ! Initialize possible positions
-    print *, pos_now-1, position(:,pos_now-1)
     call all_new_pos(position(:,pos_now-1))
 
     new_weight = 0
@@ -38,7 +37,6 @@ contains
              energy = energy + 4d0*beta*eps*((sigma2/dist2)**6d0 - (sigma2/dist2)**3d0)
           end if
        end do
-       !print*, pos_now-1 , i,  energy
        ! Cut the energy to avoid underflow
        if (energy .GE. 35) then
           weights(i) = 0
@@ -46,7 +44,6 @@ contains
           weights(i) = exp(-energy)
           new_weight = new_weight + weights(i)
        end if
-       print*, "weight", i, weights(i)
     end do
 
     ! Normalize the weights
@@ -88,7 +85,6 @@ contains
     end do
 
     new_pos = possible_pos(:, i)
-    print*, "chosen", i, weights(i), new_pos
   end subroutine choose_pos
 
   subroutine init_random_seed()

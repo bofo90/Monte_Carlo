@@ -5,6 +5,9 @@ module growing
 
   implicit none
 
+  real(8) :: tot_weight(2, N)
+
+
 contains
 
   subroutine chain_grow()
@@ -12,9 +15,8 @@ contains
     real(8) :: pol_weight = 1
     integer :: L = 3
 
+    tot_wieght = 0._8
     call add_bead(pos, pol_weight, L)
-
-    print "(2E20.8)", pol_weight
 
   end subroutine chain_grow
 
@@ -32,8 +34,12 @@ contains
     position(:,pos_now) = new_pos
     pol_weight = pol_weight * new_weight
 
+
     if (pos_now < N) then
        call add_bead(position, pol_weight, pos_now+1)
+    else if(pos_now == N)
+       ! cacluclate phyisics
+       ! putt it on file
     end if
 
   end subroutine add_bead
