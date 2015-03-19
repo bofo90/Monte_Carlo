@@ -2,6 +2,7 @@ module growing
 
   use global
   use monte_carlo
+  use physics
 
   implicit none
 
@@ -33,12 +34,10 @@ contains
 
     position(:,pos_now) = new_pos
     pol_weight = pol_weight * new_weight
-
+    sum_weight(pos_now) = sum_weight(pos_now) + pol_weight
 
     if (pos_now < N) then
        call add_bead(position, pol_weight, pos_now+1)
-    !else if(pos_now == N)
-       ! cacluclate phyisics
        ! putt it on file
     end if
 
