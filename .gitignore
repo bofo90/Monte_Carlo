@@ -1,8 +1,8 @@
 *.mod
 *.f90~
 *.out
-*.f90
-myprog
+*.exe
+*.o
 *.txt
 *.png
 *.gnu~
