@@ -48,8 +48,7 @@ contains
 
     ! Normalize the weights
     weights = weights / new_weight
-    print *, pos_now, new_weight
-    
+
     call choose_pos(new_pos)
 
   end subroutine weight_calc

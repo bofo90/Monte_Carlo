@@ -30,21 +30,22 @@ contains
     integer, intent(in) :: pos_now
 
     real(8) :: new_weight, new_pos(2)
+    real(8) :: distance
 
     call weight_calc(position, pos_now, new_weight, new_pos)
 
     position(:,pos_now) = new_pos
     pol_weight = pol_weight * new_weight
-    sum_weight(pos_now) = sum_weight(pos_now) + pol_weight
 
-    print*, sum_weight(pos_now)
+    call r_statistics(pos_now, new_pos, pol_weight)
+
 
     if (pos_now < N .AND. pol_weight > 0._8) then
        call add_bead(position, pol_weight, pos_now+1)
        ! putt it on file
+    else
+       print*, pos_now
     end if
-
-    print*, pos_now
 
   end subroutine add_bead
 
