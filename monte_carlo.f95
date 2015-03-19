@@ -56,11 +56,14 @@ contains
   subroutine all_new_pos(prev_pos)
 
     real(8), intent(in) :: prev_pos(:)
-    real(8) :: dr(2), theta
+    real(8) :: dr(2), theta, theta_rnd
     integer :: i
 
+    call init_random_seed
+    call random_number(theta_rnd)    
+
     do i = 1, N_angles
-       theta = 2._8*i*PI/N_angles
+       theta = theta_rnd + 2._8*(i-1)*PI/N_angles
        dr(1) = cos(theta)
        dr(2) = sin(theta)
        possible_pos(:, i) = prev_pos + dr

@@ -10,7 +10,7 @@ contains
 
     subroutine init_global
 
-        N = 100
+        N = 250
         beta = 1._8
         allocate(pos(2,N))
         pos = 0._8

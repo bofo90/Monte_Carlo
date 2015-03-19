@@ -18,6 +18,8 @@ contains
    ! tot_weight = 0._8
     call add_bead(pos, pol_weight, L)
 
+    print *, pol_weight
+
   end subroutine chain_grow
 
 
