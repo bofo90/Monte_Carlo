@@ -13,10 +13,11 @@ contains
 
   subroutine chain_grow()
     
-    real(8) :: pol_weight = 1
+    real(8) :: pol_weight
     integer :: L = 3
 
    ! tot_weight = 0._8
+    pol_weight = 1
     call add_bead(pos, pol_weight, L)
 
   end subroutine chain_grow
@@ -39,8 +40,6 @@ contains
     if (pos_now < N .AND. pol_weight > 0._8) then
        call add_bead(position, pol_weight, pos_now+1)
        ! putt it on file
-    else
-      print *, pos_now, pol_weight
     end if
 
   end subroutine add_bead

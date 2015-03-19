@@ -51,8 +51,6 @@ contains
     
     call choose_pos(new_pos)
 
-    print *, pos_now, new_weight
-
   end subroutine weight_calc
 
   subroutine all_new_pos(prev_pos)
