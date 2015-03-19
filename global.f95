@@ -2,7 +2,7 @@ module global
 
   implicit none
     
-    integer(8) :: N
+    integer(8) :: N, N_RUNS
     real(8), allocatable :: pos(:,:)
     real(8) :: beta
     real(8), allocatable :: rsqr(:),rsqrsqr(:), sum_weight(:)
@@ -12,6 +12,7 @@ contains
     subroutine init_global
 
         N = 250
+        N_RUNS = 1000
         beta = 1._8
         allocate(pos(2,N))
         allocate(rsqr(N))
