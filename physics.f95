@@ -11,9 +11,9 @@ contains
     integer, intent(in) :: N
     real(8), intent(in) :: position(:), weight
 
-    integer(8) :: i
     real(8) :: distance
 
+    num_N_poly(N) = num_N_poly(N) + 1
     distance = dot_product(position,position)
     rsqrsqr(N) = rsqrsqr(N) + (distance**2) * weight
     rsqr(N) = rsqr(N) + distance * weight

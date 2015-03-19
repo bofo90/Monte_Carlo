@@ -33,7 +33,7 @@ contains
 
         do i = 1, N
           mean_rsqr = rsqr(i)/sum_weight(i)
-          write(fRsqr, *) i, mean_rsqr, sqrt((rsqrsqr(i)/sum_weight(i) - mean_rsqr**2)/N_RUNS)
+          write(fRsqr, *) i, mean_rsqr, sqrt((rsqrsqr(i)/sum_weight(i) - mean_rsqr**2)/num_N_poly(i))
         end do
 
     end subroutine write_rsqr
