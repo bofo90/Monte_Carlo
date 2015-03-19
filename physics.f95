@@ -18,6 +18,7 @@ contains
     rsqrsqr(N) = rsqrsqr(N) + (distance**2) * weight
     rsqr(N) = rsqr(N) + distance * weight
     sum_weight(N) = sum_weight(N) + weight
+    unweight_rsq(N) = unweight_rsq(N) + distance
 
   end subroutine r_statistics
 

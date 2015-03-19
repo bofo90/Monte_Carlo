@@ -7,6 +7,7 @@ module global
     real(8) :: beta
     real(8), allocatable :: rsqr(:),rsqrsqr(:), sum_weight(:)
     integer, allocatable :: num_N_poly(:)
+    real(8), allocatable :: unweight_rsq(:)
 
 contains
 
@@ -20,10 +21,12 @@ contains
         allocate(rsqrsqr(N))
         allocate(sum_weight(N))
         allocate(num_N_poly(N))
+        allocate(unweight_rsq(N))
         rsqr = 0._8
         rsqrsqr = 0._8
         sum_weight = 0._8
         num_N_poly = 0
+        unweight_rsq = 0._8
     end subroutine
 
     subroutine init_vectors
