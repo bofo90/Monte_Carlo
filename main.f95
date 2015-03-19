@@ -9,9 +9,10 @@ program Polymer
 
   integer(8) :: i
   
-  call init_global()
+  call alloc_global()
 
   do i = 1, N_RUNS
+    call init_vectors()
     call chain_grow()
     call r_statistics()
     print *, i

@@ -19,8 +19,6 @@ contains
    ! tot_weight = 0._8
     call add_bead(pos, pol_weight, L)
 
-    print *, pol_weight
-
   end subroutine chain_grow
 
 
@@ -38,9 +36,11 @@ contains
     pol_weight = pol_weight * new_weight
     sum_weight(pos_now) = sum_weight(pos_now) + pol_weight
 
-    if (pos_now < N) then
+    if (pos_now < N .AND. pol_weight > 0._8) then
        call add_bead(position, pol_weight, pos_now+1)
        ! putt it on file
+    else
+      print *, pos_now, pol_weight
     end if
 
   end subroutine add_bead

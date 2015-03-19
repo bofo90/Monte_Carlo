@@ -38,7 +38,7 @@ contains
           end if
        end do
        ! Cut the energy to avoid underflow
-       if (energy .GE. 50) then
+       if (energy .GE. 35) then
           weights(i) = 0
        else
           weights(i) = exp(-energy)
@@ -50,6 +50,8 @@ contains
     weights = weights / new_weight
     
     call choose_pos(new_pos)
+
+    print *, pos_now, new_weight
 
   end subroutine weight_calc
 
