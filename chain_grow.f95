@@ -37,11 +37,14 @@ contains
     pol_weight = pol_weight * new_weight
     sum_weight(pos_now) = sum_weight(pos_now) + pol_weight
 
-    print *, pos_now, sum_weight(pos_now)
+    print*, sum_weight(pos_now)
+
     if (pos_now < N .AND. pol_weight > 0._8) then
        call add_bead(position, pol_weight, pos_now+1)
        ! putt it on file
     end if
+
+    print*, pos_now
 
   end subroutine add_bead
 
