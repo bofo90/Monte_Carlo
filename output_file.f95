@@ -32,6 +32,7 @@ contains
         real(8) :: mean_rsqr
 
         do i = 1, N
+          print *, rsqr(i), sum_weight(i)
           mean_rsqr = rsqr(i)/sum_weight(i)
           write(fRsqr, *) i, mean_rsqr, sqrt(rsqrsqr(i)/sum_weight(i) - mean_rsqr**2)
         end do
