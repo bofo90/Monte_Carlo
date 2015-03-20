@@ -48,6 +48,11 @@ contains
 
     ! Normalize the weights
     weights = weights / new_weight
+<<<<<<< HEAD
+    
+=======
+
+>>>>>>> d1db4b2d78de3a54a2b24cbf41bcc655147ad16a
     call choose_pos(new_pos)
 
   end subroutine weight_calc

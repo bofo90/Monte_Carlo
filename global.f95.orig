@@ -14,7 +14,11 @@ contains
     subroutine alloc_global
 
         N = 250
-        N_RUNS = 100
+<<<<<<< HEAD
+        N_RUNS = 10
+=======
+        N_RUNS = 1000
+>>>>>>> d1db4b2d78de3a54a2b24cbf41bcc655147ad16a
         beta = 1._8
         allocate(pos(2,N))
         allocate(rsqr(N))

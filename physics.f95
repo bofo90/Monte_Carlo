@@ -6,15 +6,19 @@ module physics
 
 contains
 
-  subroutine r_statistics()
+  subroutine r_statistics(N, position, weight)
 
-    integer(8) :: i
+    integer, intent(in) :: N
+    real(8), intent(in) :: position(:), weight
 
-    do i = 1, N
-       rsqr(i) = dot_product(pos(:,i), pos(:,i))
-       rsqrsqr(i) = (rsqr(i)**2) * sum_weight(i)
-       rsqr(i) = rsqr(i) * sum_weight(i)
-    end do
+    real(8) :: distance
+
+    num_N_poly(N) = num_N_poly(N) + 1
+    distance = dot_product(position,position)
+    rsqrsqr(N) = rsqrsqr(N) + (distance**2) * weight
+    rsqr(N) = rsqr(N) + distance * weight
+    sum_weight(N) = sum_weight(N) + weight
+    unweight_rsq(N) = unweight_rsq(N) + distance
 
   end subroutine r_statistics
 
