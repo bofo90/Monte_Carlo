@@ -6,7 +6,7 @@ module monte_carlo
 
   real(8), parameter :: PI = 4d0*atan(1d0)
   integer, parameter :: N_angles = 6
-  real(8) :: possible_pos(2, N_angles)
+  real(8) :: possible_pos(3, N_angles)
   real(8) :: weights(N_angles)
 
 contains
@@ -17,7 +17,7 @@ contains
     integer, intent(in) :: pos_now
     real(8), intent(out) :: new_weight, new_pos(:)
     real(8), parameter :: eps = 0.25, sigma2 = 0.64
-    real(8) :: distance(2)
+    real(8) :: distance(3)
     real(8) :: dist2, energy
     integer(8) :: i, j
 
@@ -55,16 +55,18 @@ contains
   subroutine all_new_pos(prev_pos)
 
     real(8), intent(in) :: prev_pos(:)
-    real(8) :: dr(2), theta, theta_rnd
+    real(8) :: dr(3), theta, phi, theta_rnd(2)
     integer :: i
 
     call init_random_seed
     call random_number(theta_rnd)    
 
     do i = 1, N_angles
-       theta = theta_rnd + 2._8*(i-1)*PI/N_angles
-       dr(1) = cos(theta)
-       dr(2) = sin(theta)
+       theta = theta_rnd(1) + 2._8*(i-1)*PI/N_angles
+       phi = theta_rnd(2) + (i-1)*PI/N_angles
+       dr(1) = sin(phi)*cos(theta)
+       dr(2) = sin(phi)*sin(theta)
+       dr(3) = cos(phi)
        possible_pos(:, i) = prev_pos + dr
     end do
 

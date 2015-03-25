@@ -29,22 +29,23 @@ contains
     real(8), intent(inout) :: pol_weight
     integer, intent(in) :: pos_now
 
-    real(8) :: new_weight, new_pos(2)
+    real(8) :: new_weight, new_pos(3)
 
     call weight_calc(position, pos_now, new_weight, new_pos)
 
     position(:,pos_now) = new_pos
     pol_weight = pol_weight * new_weight
-
     if (pol_weight > 0._8) then
-       call r_statistics(pos_now, new_pos, pol_weight)
+      call r_statistics(pos_now, new_pos, pol_weight)
 
-       if (pos_now < N) then
-          call add_bead(position, pol_weight, pos_now+1)
+      if (pos_now < N) then
+        call add_bead(position, pol_weight, pos_now+1)
           ! putt it on file
-       end if
+      else
+        print*, "N_max->", pos_now
+      end if
     else
-       print*, pos_now
+       print*, "N_max->", pos_now
     end if
 
   end subroutine add_bead
