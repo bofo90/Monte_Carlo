@@ -19,7 +19,6 @@ program Polymer
     !call r_statistics()
   end do
 
-  call write_pos(pos)
   call write_rsqr
   call close_files
 

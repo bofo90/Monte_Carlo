@@ -16,7 +16,6 @@ ax = fig.add_subplot(1,1,1)
 
 fit_param = np.polyfit(np.log(N[2:40]-1), np.log(rsq[2:40]), 1)
 print fit_param
-
 ax.set_yscale('log')
 ax.set_xscale('log')
 
@@ -29,10 +28,11 @@ ax = fig.add_subplot(111, projection='3d')
 
 data = np.loadtxt("data/position_test.dat", skiprows=0)
 
-x = data[:,0]
-y = data[:,1]
-z = data[:,2]
+x = data[0:249,0]
+y = data[0:249,1]
+z = data[0:249,2]
 
+ax.scatter(x, y, z)
 ax.plot(x, y, z)
 ax.set_xlabel('X axis')
 ax.set_ylabel('Y axis')
