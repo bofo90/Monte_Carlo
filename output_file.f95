@@ -5,6 +5,7 @@ module output_file
     implicit none
 
     integer, parameter :: fRsqr = 1001
+    integer, parameter :: fPos = 1002
 
 contains
 
@@ -12,7 +13,8 @@ contains
 
         character(len=*), intent(in) :: fname
 
-        open(unit = fRsqr, file = "./data/energy_" // fname // ".dat")
+        open(unit = fRsqr, file = "./data/rsq_" // fname // ".dat")
+        open(unit = fPos, file = "./data/position_" // fname // ".dat")
 
         call insert_header(fRsqr)
 
@@ -32,16 +34,26 @@ contains
         real(8) :: mean_rsqr
 
         do i = 1, N
-          print *, rsqr(i), sum_weight(i)
           mean_rsqr = rsqr(i)/sum_weight(i)
           write(fRsqr, *) i, mean_rsqr, sqrt((rsqrsqr(i)/sum_weight(i) - mean_rsqr**2)/num_N_poly(i))
         end do
 
     end subroutine write_rsqr
 
+    subroutine write_pos(position)
+
+        real(8), intent(in) :: position(:,:)
+        integer(8) :: i
+        do i = 1, size(position, 2)
+          write(fPos, *) position(1,i), position(2,i), position(3,i)
+        end do
+
+    end subroutine write_pos
+
     subroutine close_files
 
         close(fRsqr)
+        close(fPos)
 
     end subroutine close_files
 

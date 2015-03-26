@@ -15,7 +15,7 @@ contains
 
         N = 250
         N_RUNS = 100
-        beta = 1._8
+        beta = 1.3_8
         allocate(pos(3,N))
         allocate(rsqr(N))
         allocate(rsqrsqr(N))

@@ -3,6 +3,7 @@ module growing
   use global
   use monte_carlo
   use physics
+  use output_file
 
   implicit none
 
@@ -43,9 +44,11 @@ contains
           ! putt it on file
       else
         print*, "N_max->", pos_now
+        print *, "Weight->", pol_weight
       end if
     else
        print*, "N_max->", pos_now
+       print *, "Weight->", pol_weight
     end if
 
   end subroutine add_bead

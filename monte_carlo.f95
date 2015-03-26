@@ -5,9 +5,10 @@ module monte_carlo
   implicit none
 
   real(8), parameter :: PI = 4d0*atan(1d0)
-  integer, parameter :: N_angles = 6
-  real(8) :: possible_pos(3, N_angles)
-  real(8) :: weights(N_angles)
+  integer, parameter :: N_theta = 4
+  integer, parameter :: N_phi = 3
+  real(8) :: possible_pos(3, N_theta*N_phi)
+  real(8) :: weights(N_theta*N_phi)
 
 contains
 
@@ -19,13 +20,14 @@ contains
     real(8), parameter :: eps = 0.25, sigma2 = 0.64
     real(8) :: distance(3)
     real(8) :: dist2, energy
-    integer(8) :: i, j
+    integer(8) :: i, j, N_tot
 
     ! Initialize possible positions
     call all_new_pos(position(:,pos_now-1))
 
     new_weight = 0
-    do i = 1, N_angles
+    N_tot = N_theta*N_phi
+    do i = 1, N_tot
        energy = 0
        do j = 1, pos_now-1
           distance = possible_pos(:,i)-position(:,j)
@@ -56,18 +58,21 @@ contains
 
     real(8), intent(in) :: prev_pos(:)
     real(8) :: dr(3), theta, phi, theta_rnd(2)
-    integer :: i
+    integer :: i, k, N_tot
 
     call init_random_seed
-    call random_number(theta_rnd)    
+    call random_number(theta_rnd)
 
-    do i = 1, N_angles
-       theta = theta_rnd(1) + 2._8*(i-1)*PI/N_angles
-       phi = theta_rnd(2) + (i-1)*PI/N_angles
-       dr(1) = sin(phi)*cos(theta)
-       dr(2) = sin(phi)*sin(theta)
-       dr(3) = cos(phi)
-       possible_pos(:, i) = prev_pos + dr
+    N_tot  = N_phi*N_theta
+
+    do i = 1, N_tot
+      k = mod(i-1,N_theta)
+      theta = theta_rnd(1) + 2._8*k*PI/N_theta
+      phi = theta_rnd(2) + ((i-1-k)/N_theta)*PI/N_phi
+      dr(1) = sin(phi)*cos(theta)
+      dr(2) = sin(phi)*sin(theta)
+      dr(3) = cos(phi)
+      possible_pos(:, i) = prev_pos + dr
     end do
 
   end subroutine all_new_pos
@@ -76,14 +81,15 @@ contains
 
     real(8), intent(out) :: new_pos(:)
     real(8) :: rnd_out, sum_weights
-    integer :: i
+    integer :: i, N_tot
 
     call init_random_seed
     call random_number(rnd_out)
 
     i = 1
     sum_weights = weights(i)
-    do while (sum_weights < rnd_out .AND. i < N_angles)
+    N_tot = N_theta*N_phi
+    do while (sum_weights < rnd_out .AND. i < N_tot)
        i = i + 1
        sum_weights = sum_weights + weights(i)
     end do

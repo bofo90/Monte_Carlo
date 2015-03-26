@@ -10,6 +10,7 @@ program Polymer
   integer(8) :: i
   
   call alloc_global()
+  call init_files("test")
 
   do i = 1, N_RUNS
     print *, "Run->", i
@@ -18,7 +19,7 @@ program Polymer
     !call r_statistics()
   end do
 
-  call init_files("test")
+  call write_pos(pos)
   call write_rsqr
   call close_files
 
