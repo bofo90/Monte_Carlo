@@ -6,6 +6,7 @@ module output_file
 
     integer, parameter :: fRsqr = 1001
     integer, parameter :: fPos = 1002
+    integer, parameter :: fGyr = 1003
 
 contains
 
@@ -14,9 +15,11 @@ contains
         character(len=*), intent(in) :: fname
 
         open(unit = fRsqr, file = "./data/rsq_" // fname // ".dat")
-        open(unit = fPos, file = "./data/position_" // fname // ".dat")
+        !open(unit = fPos, file = "./data/position_" // fname // ".dat")
+        open(unit = fGyr, file = "./data/gyr_" // fname // ".dat")
 
         call insert_header(fRsqr)
+        call insert_header(fGyr)
 
     end subroutine init_files
 
@@ -39,6 +42,19 @@ contains
         end do
 
     end subroutine write_rsqr
+
+    subroutine write_gyr
+
+        integer(8) :: i
+        real(8) :: mean_rsqr
+
+        mean_rsqr = 0
+        do i = 1, N
+          mean_rsqr = mean_rsqr + rsqr(i)/sum_weight(i)
+          write(fGyr, *) i, mean_rsqr/i - sum_r_mean(i)/sum_weight(i)
+        end do
+
+    end subroutine write_gyr
 
     subroutine write_pos(position)
 

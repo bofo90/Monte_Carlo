@@ -24,7 +24,7 @@ contains
     pol_weight = 1._8
     call add_bead(pos, pol_weight, L)
 
-    call write_pos(pos)
+    !call write_pos(pos)
   end subroutine chain_grow
 
 

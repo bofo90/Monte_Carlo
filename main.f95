@@ -20,6 +20,7 @@ program Polymer
   end do
 
   call write_rsqr
+  call write_gyr
   call close_files
 
   !call plot()
