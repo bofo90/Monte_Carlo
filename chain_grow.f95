@@ -14,10 +14,13 @@ contains
   subroutine chain_grow()
     
     real(8) :: pol_weight
+    real(8) :: pos(3,N)
     integer :: L = 3
 
    ! tot_weight = 0._8
-    pol_weight = 1
+    pos = 0._8
+    pos(1,2) = 1._8
+    pol_weight = 1._8
     call add_bead(pos, pol_weight, L)
 
   end subroutine chain_grow
@@ -36,11 +39,9 @@ contains
     position(:,pos_now) = new_pos
     pol_weight = pol_weight * new_weight
     if (pol_weight > 0._8) then
-      call r_statistics(pos_now, new_pos, pol_weight)
-
+      call r_statistics(pos_now, position, pol_weight)
       if (pos_now < N) then
         call add_bead(position, pol_weight, pos_now+1)
-          ! putt it on file
       else
         print*, "N_max->", pos_now
       end if
