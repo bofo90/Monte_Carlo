@@ -13,7 +13,7 @@ contains
     subroutine alloc_global
 
         N = 250
-        N_RUNS = 100
+        N_RUNS = 10
         beta = 1._8
         allocate(sum_r_mean(N))
         allocate(rsqr(N))

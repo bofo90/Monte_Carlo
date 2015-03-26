@@ -24,19 +24,31 @@ rsq_teo = np.exp([fit_param[1] + 2*0.588*log(y-1) for y in N[2:]])
 ax.plot(N[2:], rsq_teo, 'r-')
 
 fig = plt.figure(2)
-ax = fig.add_subplot(111, projection='3d')
+ax = fig.add_subplot(1,1,1)
 
-data = np.loadtxt("data/position_test.dat", skiprows=0)
+data = np.loadtxt("data/gyr_test.dat", skiprows=1)
 
-x = data[0:249,0]
-y = data[0:249,1]
-z = data[0:249,2]
+N = data[:,0]
+rsq = data[:,1]
 
-ax.scatter(x, y, z)
-ax.plot(x, y, z)
-ax.set_xlabel('X axis')
-ax.set_ylabel('Y axis')
-ax.set_zlabel('Z axis')
+ax.plot(N[1:], rsq[1:], '-o')
+ax.set_yscale('log')
+ax.set_xscale('log')
+
+#fig = plt.figure(2)
+#ax = fig.add_subplot(111, projection='3d')
+#
+#data = np.loadtxt("data/position_test.dat", skiprows=0)
+#
+#x = data[0:249,0]
+#y = data[0:249,1]
+#z = data[0:249,2]
+#
+#ax.scatter(x, y, z)
+#ax.plot(x, y, z)
+#ax.set_xlabel('X axis')
+#ax.set_ylabel('Y axis')
+#ax.set_zlabel('Z axis')
 
 
 plt.show()

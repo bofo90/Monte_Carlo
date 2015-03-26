@@ -20,7 +20,7 @@ contains
     rsqr(pos_now) = rsqr(pos_now) + distance * weight
     sum_weight(pos_now) = sum_weight(pos_now) + weight
 
-    r_mean = sum(position(:,:pos_now), dim=2)
+    r_mean = sum(position(:,:pos_now), dim=2)/pos_now
     sum_r_mean(pos_now) = sum_r_mean(pos_now) + dot_product(r_mean, r_mean) * weight
 
   end subroutine r_statistics
