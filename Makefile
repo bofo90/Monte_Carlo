@@ -17,7 +17,6 @@ OBJS += output_file.o
 OBJS += monte_carlo.o
 OBJS += physics.o
 OBJS += chain_grow.o
-OBJS += plotting.o
 OBJS += main.o
 
 $(TARGET): $(OBJS)

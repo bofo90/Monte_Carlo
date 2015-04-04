@@ -70,7 +70,7 @@ contains
 
         close(fRsqr)
         close(fPos)
-	close(fGyr)
+        close(fGyr)
 
     end subroutine close_files
 
