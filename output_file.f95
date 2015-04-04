@@ -35,7 +35,9 @@ contains
 
         integer(8) :: i
         real(8) :: mean_rsqr
-
+! What are rsqr, sum_weight, rsqrsqr and num_N_poly?
+! You have not defined them, and I don't see them in the module globals. 
+! A bit confusing to others. 
         do i = 1, N
           mean_rsqr = rsqr(i)/sum_weight(i)
           write(fRsqr, *) i, mean_rsqr, sqrt((rsqrsqr(i)/sum_weight(i) - mean_rsqr**2)/num_N_poly(i))
