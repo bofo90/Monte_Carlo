@@ -15,7 +15,7 @@ contains
         character(len=*), intent(in) :: fname
 
         open(unit = fRsqr, file = "./data/rsq_" // fname // ".dat")
-        !open(unit = fPos, file = "./data/position_" // fname // ".dat")
+        open(unit = fPos, file = "./data/position_" // fname // ".dat")
         open(unit = fGyr, file = "./data/gyr_" // fname // ".dat")
 
         call insert_header(fRsqr)

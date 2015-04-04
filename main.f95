@@ -15,7 +15,7 @@ program Polymer
   do i = 1, N_RUNS
     print *, "Run->", i
     call init_vectors()
-    call chain_grow()
+    call chain_grow(i)
     !call r_statistics()
   end do
 

@@ -12,8 +12,10 @@ module growing
 
 contains
 
-  subroutine chain_grow()
-    
+  subroutine chain_grow(i)
+
+    integer(8), intent(in) :: i    
+
     real(8) :: pol_weight
     real(8) :: pos(3,N)
     integer :: L = 3
@@ -24,7 +26,9 @@ contains
     pol_weight = 1._8
     call add_bead(pos, pol_weight, L)
 
-    !call write_pos(pos)
+    if (i<7) then
+       call write_pos(pos)
+    end if
   end subroutine chain_grow
 
 

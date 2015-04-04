@@ -35,20 +35,25 @@ ax.plot(N[1:], rsq[1:], '-o')
 ax.set_yscale('log')
 ax.set_xscale('log')
 
-#fig = plt.figure(2)
-#ax = fig.add_subplot(111, projection='3d')
-#
-#data = np.loadtxt("data/position_test.dat", skiprows=0)
-#
-#x = data[0:249,0]
-#y = data[0:249,1]
-#z = data[0:249,2]
-#
-#ax.scatter(x, y, z)
-#ax.plot(x, y, z)
-#ax.set_xlabel('X axis')
-#ax.set_ylabel('Y axis')
-#ax.set_zlabel('Z axis')
+fig = plt.figure(3)
+ax = fig.add_subplot(111, projection='3d')
+
+data = np.loadtxt("data/position_test.dat", skiprows=0)
+
+i = 0
+for j in "bgrcmy":
+    x = data[i*250:i*250+249,0]
+    y = data[i*250:i*250+249,1]
+    z = data[i*250:i*250+249,2]
+
+    #ax.scatter(x, y, z, color = j)
+    ax.plot(x, y, z, color = j, alpha = 0.5)
+
+    i += 1
+
+ax.set_xlabel('X axis')
+ax.set_ylabel('Y axis')
+ax.set_zlabel('Z axis')
 
 
 plt.show()
