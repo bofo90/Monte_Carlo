@@ -6,10 +6,10 @@ module monte_carlo
 
   real(8), parameter :: PI = 4d0*atan(1d0)
   integer, parameter :: N_theta = 4
-  integer, parameter :: N_phi = 3
-  real(8) :: possible_pos(3, N_theta*N_phi)
-  real(8) :: weights(N_theta*N_phi)
-  real(8) :: alpha_up, alpha_low
+  !integer, parameter :: N_phi = 3
+  real(8) :: possible_pos(2, N_theta)
+  real(8) :: weights(N_theta)
+  real(8), parameter :: alpha_up = 2, alpha_low = 1.5
 
 contains
 
@@ -19,29 +19,29 @@ contains
     integer, intent(in) :: pos_now
     real(8), intent(out) :: new_weight, new_pos(:)
     real(8), parameter :: eps = 0.25, sigma2 = 0.64
-    real(8) :: distance(3)
+    real(8) :: distance(2)
     real(8) :: dist2, energy
-    integer(8) :: i, j, N_tot
+    integer(8) :: i, j
 
     ! Initialize possible positions
     call all_new_pos(position(:,pos_now-1))
 
     new_weight = 0
-    N_tot = N_theta*N_phi
-    do i = 1, N_tot
+    do i = 1, N_theta
        energy = 0
        do j = 1, pos_now-1
           distance = possible_pos(:,i)-position(:,j)
           dist2 = dot_product(distance, distance)
-          if(dist2 < 0.03*sigma2)then
+          if(dist2 < 0.78*sigma2)then
              energy = energy + N*1000 
-             !ensure that when we increase N this value will increase
+             !ensure that when we increase N this value will increase,
+             !so it becomes weight = 0
           else
              energy = energy + 4d0*beta*eps*((sigma2/dist2)**6d0 - (sigma2/dist2)**3d0)
           end if
        end do
        ! Cut the energy to avoid underflow
-       if (energy .GE. 35) then
+       if (energy >= 35) then
           weights(i) = 0
        else
           weights(i) = exp(-energy)
@@ -58,21 +58,16 @@ contains
   subroutine all_new_pos(prev_pos)
 
     real(8), intent(in) :: prev_pos(:)
-    real(8) :: dr(3), theta, phi, theta_rnd(2)
-    integer :: i, k, N_tot
+    real(8) :: dr(2), theta, theta_rnd
+    integer :: i
 
     call init_random_seed
     call random_number(theta_rnd)
 
-    N_tot  = N_phi*N_theta
-
-    do i = 1, N_tot
-      k = mod(i-1,N_theta)
-      theta = theta_rnd(1) + 2._8*k*PI/N_theta
-      phi = theta_rnd(2) + ((i-1-k)/N_theta)*PI/N_phi
-      dr(1) = sin(phi)*cos(theta)
-      dr(2) = sin(phi)*sin(theta)
-      dr(3) = cos(phi)
+    do i = 1, N_theta
+      theta = theta_rnd + 2._8*i*PI/N_theta
+      dr(1) = cos(theta)
+      dr(2) = sin(theta)
       possible_pos(:, i) = prev_pos + dr
     end do
 
@@ -82,15 +77,14 @@ contains
 
     real(8), intent(out) :: new_pos(:)
     real(8) :: rnd_out, sum_weights
-    integer :: i, N_tot
+    integer :: i
 
     call init_random_seed
     call random_number(rnd_out)
 
     i = 1
     sum_weights = weights(i)
-    N_tot = N_theta*N_phi
-    do while (sum_weights < rnd_out .AND. i < N_tot)
+    do while (sum_weights < rnd_out .AND. i < N_theta)
        i = i + 1
        sum_weights = sum_weights + weights(i)
     end do
@@ -102,11 +96,6 @@ contains
 
     real(8), intent(out) :: up_limit, low_limit
     integer, intent(in) :: pos_now
-
-    if(pos_now == 3) then
-       alpha_low = int(sum_weight(pos_now)*100._8)*0.01_8
-       alpha_up = sum_weight(pos_now)
-    end if
 
     up_limit = alpha_up * sum_weight(pos_now)/(num_N_poly(pos_now)*sum_weight(3))
     low_limit = alpha_low * sum_weight(pos_now)/(num_N_poly(pos_now)*sum_weight(3))

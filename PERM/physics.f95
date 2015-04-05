@@ -12,7 +12,7 @@ contains
     real(8), intent(in) :: position(:,:), weight
 
     real(8) :: distance
-    real(8) :: r_mean(3)
+    real(8) :: r_mean(2)
 
     num_N_poly(pos_now) = num_N_poly(pos_now) + 1
     distance = dot_product(position(:,pos_now),position(:,pos_now))

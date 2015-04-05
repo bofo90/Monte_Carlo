@@ -61,7 +61,7 @@ contains
         real(8), intent(in) :: position(:,:)
         integer(8) :: i
         do i = 1, size(position, 2)
-          write(fPos, *) position(1,i), position(2,i), position(3,i)
+          write(fPos, *) position(1,i), position(2,i)!, position(3,i)
         end do
 
     end subroutine write_pos
