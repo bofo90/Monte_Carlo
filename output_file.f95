@@ -7,6 +7,7 @@ module output_file
     integer, parameter :: fRsqr = 1001
     integer, parameter :: fPos = 1002
     integer, parameter :: fGyr = 1003
+    integer, parameter :: fNPoly = 1004
 
 contains
 
@@ -17,6 +18,7 @@ contains
         open(unit = fRsqr, file = "./data/rsq_" // fname // ".dat")
         open(unit = fPos, file = "./data/position_" // fname // ".dat")
         open(unit = fGyr, file = "./data/gyr_" // fname // ".dat")
+        open(unit = fNPoly, file = "./data/npoly_" // fname // ".dat")
 
         call insert_header(fRsqr)
         call insert_header(fGyr)
@@ -66,11 +68,21 @@ contains
 
     end subroutine write_pos
 
+    subroutine write_Npoly
+
+        integer(8) :: i
+        do i = 1, size(num_N_poly)
+          write(fNPoly, *) i, num_N_poly(i)
+        end do
+
+    end subroutine write_Npoly
+
     subroutine close_files
 
         close(fRsqr)
         close(fPos)
-	close(fGyr)
+        close(fGyr)
+        close(fNPoly)
 
     end subroutine close_files
 

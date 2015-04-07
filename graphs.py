@@ -5,7 +5,9 @@ import numpy as np
 import pylab as P
 from math import *
 
-data = np.loadtxt("data/rsq_test.dat", skiprows=1)
+file_end = "PERM_3D"
+
+data = np.loadtxt("data/rsq_"+file_end+".dat", skiprows=1)
 
 N = data[:,0]
 rsq = data[:,1]
@@ -26,7 +28,7 @@ ax.plot(N[2:], rsq_teo, 'r-')
 fig = plt.figure(2)
 ax = fig.add_subplot(1,1,1)
 
-data = np.loadtxt("data/gyr_test.dat", skiprows=1)
+data = np.loadtxt("data/gyr_"+file_end+".dat", skiprows=1)
 
 N = data[:,0]
 rsq = data[:,1]
@@ -35,25 +37,25 @@ ax.plot(N[1:], rsq[1:], '-o')
 ax.set_yscale('log')
 ax.set_xscale('log')
 
-fig = plt.figure(3)
-ax = fig.add_subplot(111, projection='3d')
+#fig = plt.figure(3)
+#ax = fig.add_subplot(111, projection='3d')
 
-data = np.loadtxt("data/position_test.dat", skiprows=0)
+#data = np.loadtxt("data/position_"+file_end+".dat", skiprows=0)
 
-i = 0
-for j in "bgrcmy":
-    x = data[i*250:i*250+249,0]
-    y = data[i*250:i*250+249,1]
-    z = data[i*250:i*250+249,2]
+#i = 0
+#for j in "bgrcmy":
+#    x = data[i*250:i*250+249,0]
+#    y = data[i*250:i*250+249,1]
+#    z = data[i*250:i*250+249,2]
 
     #ax.scatter(x, y, z, color = j)
-    ax.plot(x, y, z, color = j, alpha = 0.5)
+#    ax.plot(x, y, z, color = j, alpha = 0.5)
 
-    i += 1
+#    i += 1
 
-ax.set_xlabel('X axis')
-ax.set_ylabel('Y axis')
-ax.set_zlabel('Z axis')
+#ax.set_xlabel('X axis')
+#ax.set_ylabel('Y axis')
+#ax.set_zlabel('Z axis')
 
 
 plt.show()
