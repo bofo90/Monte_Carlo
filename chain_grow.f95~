@@ -25,9 +25,13 @@ contains
     pos(1,2) = 1._8
     pol_weight = 1._8
     L = 3
-
+<<<<<<< HEAD
+    if (perm .AND. i > i_PERM) then
+       call add_bead(pos, pol_weight, L, .TRUE.)
+=======
     if (perm .AND. i > N_PERM) then
       call add_bead(pos, pol_weight, L, .TRUE.)
+>>>>>>> dacc268bd14269a7aea6570f2464b12ca389fe0a
     else
        call add_bead(pos, pol_weight, L, .FALSE.)
     end if
@@ -91,6 +95,9 @@ contains
 
   end subroutine add_bead
 
+<<<<<<< HEAD
+end module growing
+=======
   subroutine up_and_low_limit_calc(pos_now, up_limit, low_limit)
 
     real(8), intent(out) :: up_limit, low_limit
@@ -110,4 +117,4 @@ contains
   end subroutine up_and_low_limit_calc
 
 end module
-
+>>>>>>> dacc268bd14269a7aea6570f2464b12ca389fe0a
