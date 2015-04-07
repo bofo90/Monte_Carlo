@@ -8,9 +8,9 @@ program Polymer
   implicit none
 
   integer(8) :: i
-  logical, parameter :: run_2d = .FALSE.
-  logical, parameter :: perm = .TRUE.
-  character(len=*), parameter :: suffix = "PERM_3D"
+  logical, parameter :: run_2d = .TRUE.
+  logical, parameter :: perm = .FALSE.
+  character(len=*), parameter :: suffix = "2D"
   
   call alloc_global()
   call init_files(suffix)

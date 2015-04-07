@@ -82,24 +82,6 @@ contains
 
   end subroutine weight_calc
 
-  subroutine up_and_low_limit_calc(pos_now, up_limit, low_limit)
-
-    real(8), intent(out) :: up_limit, low_limit
-    integer, intent(in) :: pos_now
-    real(8), parameter :: alpha_low = 0.1, alpha_up = 5
-    real(8) :: weight_avg
-
-    if (num_N_poly(pos_now) .LE. 20) then
-      up_limit = 1d10
-      low_limit = 0
-    else
-      weight_avg = sum_weight(pos_now)/num_N_poly(pos_now)
-      up_limit = alpha_up * weight_avg
-      low_limit = alpha_low * weight_avg
-    end if
-
-  end subroutine up_and_low_limit_calc
-
   subroutine all_new_pos(prev_pos)
 
     real(8), intent(in) :: prev_pos(:)

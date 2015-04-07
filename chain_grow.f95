@@ -16,16 +16,16 @@ contains
 
     real(8) :: pol_weight
     real(8) :: pos(3,N)
-    integer :: L, i_PERM
+    integer :: L, N_PERM
 
     ! Runs of the RR algorithm before starting PERM
-    i_PERM = 10
+    N_PERM = 100
 
     pos = 0._8
     pos(1,2) = 1._8
     pol_weight = 1._8
     L = 3
-    if (perm .AND. i > i_PERM) then
+    if (perm .AND. i > N_PERM) then
       call add_bead(pos, pol_weight, L, .TRUE.)
     else
       call add_bead(pos, pol_weight, L, .FALSE.)
@@ -89,5 +89,23 @@ contains
     end if
 
   end subroutine add_bead
+
+  subroutine up_and_low_limit_calc(pos_now, up_limit, low_limit)
+
+    real(8), intent(out) :: up_limit, low_limit
+    integer, intent(in) :: pos_now
+    real(8), parameter :: alpha_low = 0.1, alpha_up = 5
+    real(8) :: weight_avg
+
+    if (num_N_poly(pos_now) .LE. 20) then
+      up_limit = 1d10
+      low_limit = 0
+    else
+      weight_avg = sum_weight(pos_now)/num_N_poly(pos_now)
+      up_limit = alpha_up * weight_avg
+      low_limit = alpha_low * weight_avg
+    end if
+
+  end subroutine up_and_low_limit_calc
 
 end module
