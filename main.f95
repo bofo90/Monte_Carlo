@@ -9,7 +9,7 @@ program Polymer
 
   integer(8) :: i
   logical, parameter :: run_2d = .TRUE.
-  logical, parameter :: perm = .FALSE.
+  logical, parameter :: perm = .TRUE.
   character(len=*), parameter :: suffix = "2D"
   
   call alloc_global()

@@ -32,8 +32,8 @@ contains
        call add_bead(pos, pol_weight, L, .FALSE.)
     end if
 
-    ! Check the positions of the first polymers
-    if (i<7 .AND. .NOT. perm) then
+    ! Check the positions of the first polymers of 250 beads
+    if (num_N_poly(250) < 7 .AND. pos(1,250) .NE. 0._8  .AND. .NOT. perm) then
        call write_pos(pos)
     end if
   end subroutine chain_grow
@@ -77,7 +77,7 @@ contains
              call add_bead(position, pol_weight, pos_now+1, perm)
           end if
        else
-          if(pos_now == N .AND. num_N_poly(pos_now) < 6) then
+          if(pos_now == N .AND. num_N_poly(pos_now) < 7) then
              call write_pos(position)
           else
              print *, pos_now, "KILL", pol_weight
