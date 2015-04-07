@@ -8,7 +8,7 @@ program Polymer
   implicit none
 
   integer(8) :: i
-  logical, parameter :: run_2d = .TRUE.
+  logical, parameter :: run_2d = .FALSE.
   logical, parameter :: perm = .TRUE.
   character(len=*), parameter :: suffix = "2D"
   

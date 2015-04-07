@@ -7,6 +7,8 @@ module growing
 
   implicit none
 
+  integer :: num_250bead_no_PERM
+
 contains
 
   subroutine chain_grow(i, perm)
@@ -27,13 +29,14 @@ contains
     L = 3
 
     if (perm .AND. i > N_PERM) then
-      call add_bead(pos, pol_weight, L, .TRUE.)
+       call add_bead(pos, pol_weight, L, .TRUE.)
     else
        call add_bead(pos, pol_weight, L, .FALSE.)
+       num_250bead_no_PERM = num_N_poly(250)
     end if
 
     ! Check the positions of the first polymers of 250 beads
-    if (num_N_poly(250) < 7 .AND. pos(1,250) .NE. 0._8  .AND. .NOT. perm) then
+    if (num_N_poly(250) < 7 .AND. (pos(1,250) .NE. 0._8)  .AND. .NOT. perm) then
        call write_pos(pos)
     end if
   end subroutine chain_grow
@@ -67,8 +70,8 @@ contains
              call init_random_seed
              call random_number(random)
              if(random < 0.5_8) then
-                pol_weight = pol_weight * 2
                 print *, pos_now, "KEEP", up_limit, low_limit, pol_weight
+                pol_weight = pol_weight * 2
                 call add_bead(position, pol_weight, pos_now+1, perm)
              else
                 print *, pos_now, "PRUNE", up_limit, low_limit, pol_weight
@@ -77,7 +80,7 @@ contains
              call add_bead(position, pol_weight, pos_now+1, perm)
           end if
        else
-          if(pos_now == N .AND. num_N_poly(pos_now) < 7) then
+          if(pos_now == N .AND. num_N_poly(pos_now) < (num_250bead_no_PERM+7) ) then
              call write_pos(position)
           else
              print *, pos_now, "KILL", pol_weight
