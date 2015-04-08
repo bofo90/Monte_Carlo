@@ -60,17 +60,44 @@ contains
     call r_statistics(pos_now, position, pol_weight)
     call up_and_low_limit_calc(pos_now, up_limit, low_limit)
     if (perm) then
+<<<<<<< HEAD
+      if (pos_now < N .and. pol_weight > 0) then
+        if (pol_weight > up_limit) then
+          pol_weight = pol_weight * 0.5
+          call add_bead(position, pol_weight, pos_now+1, perm)
+          call add_bead(position, pol_weight, pos_now+1, perm)
+        else if(pol_weight < low_limit) then
+          call init_random_seed
+          call random_number(random)
+          if(random < 0.5_8) then
+             pol_weight = pol_weight * 2
+             call add_bead(position, pol_weight, pos_now+1, perm)
+          end if
+        else
+          call add_bead(position, pol_weight, pos_now+1, perm)
+        end if
+      else
+        if(pos_now == N .AND. num_N_poly(pos_now) < 6) then
+          call write_pos(position)
+        else
+        end if
+      end if
+=======
        if (pos_now < N .and. pol_weight > 0) then
           if (pol_weight > up_limit) then
              pol_weight = pol_weight * 0.5
+             print *, pos_now, "ENRICH", up_limit, low_limit, pol_weight
              call add_bead(position, pol_weight, pos_now+1, perm)
              call add_bead(position, pol_weight, pos_now+1, perm)
           else if(pol_weight < low_limit) then
              call init_random_seed
              call random_number(random)
              if(random < 0.5_8) then
+                print *, pos_now, "KEEP", up_limit, low_limit, pol_weight
                 pol_weight = pol_weight * 2
                 call add_bead(position, pol_weight, pos_now+1, perm)
+             else
+                print *, pos_now, "PRUNE", up_limit, low_limit, pol_weight
              end if
           else
              call add_bead(position, pol_weight, pos_now+1, perm)
@@ -78,8 +105,11 @@ contains
        else
           if(pos_now == N .AND. num_N_poly(pos_now) < (num_250bead_no_PERM+7) ) then
              call write_pos(position)
+          else
+             print *, pos_now, "KILL", pol_weight
           end if
        end if
+>>>>>>> 0957d8b6a08f3d0a601fdc7033969fc41cecdf6d
     else
        if (pol_weight > 0._8 .AND. pos_now < N) then
           call add_bead(position, pol_weight, pos_now+1, perm)
