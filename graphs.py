@@ -5,7 +5,7 @@ import numpy as np
 import pylab as P
 from math import *
 
-file_end = "PERM_3D"
+file_end = "PERM_2D"
 
 data = np.loadtxt("data/rsq_"+file_end+".dat", skiprows=1)
 
@@ -22,7 +22,7 @@ ax.set_yscale('log')
 ax.set_xscale('log')
 
 ax.errorbar(N[1:], rsq[1:], yerr=rsq_err[1:], fmt='o')
-rsq_teo = np.exp([fit_param[1] + 2*0.588*log(y-1) for y in N[2:]])
+rsq_teo = np.exp([fit_param[1] + 2*0.75*log(y-1) for y in N[2:]])
 ax.plot(N[2:], rsq_teo, 'r-')
 
 fig = plt.figure(2)

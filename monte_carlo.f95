@@ -46,9 +46,7 @@ contains
     call all_new_pos(position(:,pos_now-1))
     ! cutoff distance is chosen to be double the potential minimum
     dist2_cut = 2**(7d0/3)*sigma2
-    energy_bias = 127d0/16384
-    !dist2_cut = 100*sigma2
-    !energy_bias = 0    
+    energy_bias = 127d0/16384  
     new_weight = 0
     do i = 1, N_tot
        energy = 0
@@ -56,7 +54,7 @@ contains
           distance = possible_pos(:,i)-position(:,j)
           dist2 = dot_product(distance, distance)
           if (dist2 .LE. dist2_cut) then
-            if (dist2 < 0.01*sigma2) then
+            if (dist2 < 0.5*sigma2) then
               ! Avoid overflow by use an infinity energy
               ! ensure that when we increase N this value will increase
               energy = energy + N*1000

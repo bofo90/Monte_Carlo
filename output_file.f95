@@ -22,6 +22,7 @@ contains
 
         call insert_header(fRsqr)
         call insert_header(fGyr)
+        call insert_header(fNPoly)
 
     end subroutine init_files
 
