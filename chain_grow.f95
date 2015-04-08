@@ -92,7 +92,7 @@ contains
 
     real(8), intent(out) :: up_limit, low_limit
     integer, intent(in) :: pos_now
-    real(8), parameter :: alpha_low = 0.1, alpha_up = 5
+    real(8), parameter :: alpha_low = 0.2, alpha_up = 2
     real(8) :: weight_avg
 
     if (num_N_poly(pos_now) .GE. 5) then

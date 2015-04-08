@@ -21,8 +21,8 @@ contains
       N_theta = 6
       N_phi = 1
     else
-      N_theta = 5
-      N_phi = 4
+      N_theta = 4
+      N_phi = 3
     end if
 
     N_tot = N_phi*N_theta

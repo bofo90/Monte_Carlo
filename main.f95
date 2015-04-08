@@ -8,7 +8,7 @@ program Polymer
   implicit none
 
   integer(8) :: i, j
-  real(8) :: betas(3) = (/ 1d0, 0.98d0, 0.96d0 /)
+  real(8) :: betas(1) = (/ 0.98d0 /)
   logical, parameter :: run_2d = .FALSE.
   logical, parameter :: perm = .TRUE.
   character(len=7) :: suffix
@@ -28,7 +28,7 @@ program Polymer
     call init_files(suffix)
     i = 1
     
-    do while (minval(num_N_poly) < N_POLY .AND. i .LE. 2d4)
+    do while (minval(num_N_poly) < N_POLY .AND. i .LE. 1d5)
       call init_vectors()
       call chain_grow(i, perm)
       if (mod(i,10) == 0) then
