@@ -10,14 +10,17 @@ module global
 
 contains
 
-    subroutine alloc_global
+    subroutine alloc_global(beta_in)
+
+        real(8), intent(in) :: beta_in
 
         ! Number of beads 
         N = 250
-        ! Number of polymers in case of PERM
-        N_POLY = 10000
+
+        ! Number of polymers
+        N_POLY = 1000
         ! Temperature (defined as the beta = 1/kT)
-        beta = 1._8
+        beta = beta_in
 
         ! Allocation of the vectors
         allocate(sum_r_mean(N))
@@ -47,5 +50,16 @@ contains
         sum_weight(2) = sum_weight(2) + 1
         num_N_poly(2) = num_N_poly(2) + 1
     end subroutine init_vectors
+
+    subroutine dealloc_global
+        
+        ! Allocation of the vectors
+        deallocate(sum_r_mean)
+        deallocate(rsqr)
+        deallocate(rsqrsqr)
+        deallocate(sum_weight)
+        deallocate(num_N_poly)
+
+    end subroutine dealloc_global
 
 end module

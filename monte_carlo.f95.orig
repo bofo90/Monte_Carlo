@@ -54,7 +54,11 @@ contains
           distance = possible_pos(:,i)-position(:,j)
           dist2 = dot_product(distance, distance)
           if (dist2 .LE. dist2_cut) then
+<<<<<<< HEAD
+            if (dist2 < 0.5*sigma2) then
+=======
             if (dist2 < 0.5) then
+>>>>>>> 0957d8b6a08f3d0a601fdc7033969fc41cecdf6d
               ! Avoid overflow by use an infinity energy
               ! ensure that when we increase N this value will increase
               energy = energy + N*1000
