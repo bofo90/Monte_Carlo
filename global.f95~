@@ -15,7 +15,7 @@ contains
         ! Number of beads 
         N = 250
         ! Number of polymers in case of PERM
-        N_POLY = 10000
+        N_POLY = 1000
         ! Temperature (defined as the beta = 1/kT)
         beta = 1._8
 

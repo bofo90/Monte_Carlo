@@ -5,7 +5,7 @@ import numpy as np
 import pylab as P
 from math import *
 
-file_end = "2D"
+file_end = "3D_noPERM"
 
 fig = plt.figure(3)
 ax = fig.add_subplot(111, projection='3d')
