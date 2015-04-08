@@ -8,20 +8,12 @@ program Polymer
   implicit none
 
   integer(8) :: i, j
-  real(8) :: betas(6) = (/ 1d0, 0.98d0, 0.96d0, 0.94d0, 0.92d0, 0.9d0 /)
+  real(8) :: betas(3) = (/0.94d0, 0.92d0, 0.9d0 /)
   logical, parameter :: run_2d = .FALSE.
-<<<<<<< HEAD
-  logical, parameter :: perm = .FALSE.
-  character(len=*), parameter :: suffix = "3D_noPERM2"
-  
-  call alloc_global()
-  call init_files(suffix)
-=======
   logical, parameter :: perm = .TRUE.
   character(len=7) :: suffix
   character(len=3) :: beta_str
 
->>>>>>> 48bf17615476ca997e33a4622d3cdfe776576480
   call define_mc_param(run_2d)
   
   do j = 1, size(betas)

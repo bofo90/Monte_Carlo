@@ -8,7 +8,7 @@ program Polymer
   implicit none
 
   integer(8) :: i, j
-  real(8) :: betas(6) = (/ 1d0, 0.98d0, 0.96d0, 0.94d0, 0.92d0, 0.9d0 /)
+  real(8) :: betas(3) = (/1.d0, 0.98d0, 0.96d0 /)
   logical, parameter :: run_2d = .FALSE.
   logical, parameter :: perm = .TRUE.
   character(len=7) :: suffix
