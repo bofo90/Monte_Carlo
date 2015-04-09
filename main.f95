@@ -31,10 +31,12 @@ program Polymer
     do while (minval(num_N_poly) < N_POLY .AND. i .LE. 1d5)
       call init_vectors()
       call chain_grow(i, perm)
-      if (mod(i,10) == 0) then
+      if (mod(i,1) == 0) then
         print *, "Run->", i
         print *, "Min_N_Poly->", minval(num_N_poly)
         print *, "Min_N_Loc->", minloc(num_N_poly)
+        print *, "Max_N_Poly->", maxval(num_N_poly)
+        print *, "Max_N_Loc->", maxloc(num_N_poly)
         print *, "Tot_Poly->", sum(num_N_poly)
       end if
       i = i+1

@@ -5,7 +5,7 @@ import numpy as np
 import pylab as P
 from math import *
 
-betas = [1.0, 0.98, 0.96, 0.94, 0.92]
+betas = [0.98]
 legend = []
 
 plt.figure(1)
@@ -29,6 +29,7 @@ for beta in betas:
 	legend.append(legend_str)
 
 	plt.plot(np.divide(1,np.log(N[2:])), ratio)
+	#plt.plot(N[2:], rsq[2:])
 
 plt.show()
 
