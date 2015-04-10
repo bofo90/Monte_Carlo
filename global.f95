@@ -18,7 +18,7 @@ contains
         N = 250
 
         ! Number of polymers
-        N_POLY = 100
+        N_POLY = 1000
         ! Temperature (defined as the beta = 1/kT)
         beta = beta_in
 

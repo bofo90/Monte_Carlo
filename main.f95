@@ -35,8 +35,14 @@ program Polymer
         print *, "Run->", i
         print *, "Min_N_Poly->", minval(num_N_poly)
         print *, "Min_N_Loc->", minloc(num_N_poly)
+        num_N_poly(1) = num_N_poly(1) - 10000
+        num_N_poly(2) = num_N_poly(2) - 10000
+        num_N_poly(3) = num_N_poly(3) - 10000
         print *, "Max_N_Poly->", maxval(num_N_poly)
         print *, "Max_N_Loc->", maxloc(num_N_poly)
+        num_N_poly(1) = num_N_poly(1) + 10000
+        num_N_poly(2) = num_N_poly(2) + 10000
+        num_N_poly(3) = num_N_poly(3) + 10000
         print *, "Tot_Poly->", sum(num_N_poly)
       end if
       i = i+1
