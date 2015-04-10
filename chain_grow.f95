@@ -71,7 +71,7 @@ contains
              call random_number(random)
              if(random < 0.5_8) then
                 pol_weight = pol_weight * 2
-                !print *, pos_now, "PRUNE", pol_weight, up_limit, low_limit
+                !print *, pos_now, "KEEP", pol_weight, up_limit, low_limit
                 call add_bead(position, pol_weight, pos_now+1, perm)
              end if
           else

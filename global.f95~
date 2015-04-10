@@ -18,7 +18,11 @@ contains
         N = 250
 
         ! Number of polymers
-        N_POLY = 100
+<<<<<<< HEAD
+        N_POLY = 1000
+=======
+        N_POLY = 10000
+>>>>>>> c1b39806875ac3c700bc19e6b2c90be0728641fd
         ! Temperature (defined as the beta = 1/kT)
         beta = beta_in
 

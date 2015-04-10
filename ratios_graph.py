@@ -5,7 +5,7 @@ import numpy as np
 import pylab as P
 from math import *
 
-betas = [0.98]
+betas = [0.92]
 legend = []
 
 plt.figure(1)

@@ -8,7 +8,7 @@ program Polymer
   implicit none
 
   integer(8) :: i, j
-  real(8) :: betas(1) = (/ 0.98d0 /)
+  real(8) :: betas(1) = (/ 0.94d0 /)
   logical, parameter :: run_2d = .FALSE.
   logical, parameter :: perm = .TRUE.
   character(len=7) :: suffix
@@ -31,18 +31,12 @@ program Polymer
     do while (minval(num_N_poly) < N_POLY .AND. i .LE. 1d5)
       call init_vectors()
       call chain_grow(i, perm)
-      if (mod(i,1) == 0) then
+      if (mod(i,10) == 0) then
         print *, "Run->", i
-        print *, "Min_N_Poly->", minval(num_N_poly)
-        print *, "Min_N_Loc->", minloc(num_N_poly)
-        num_N_poly(1) = num_N_poly(1) - 10000
-        num_N_poly(2) = num_N_poly(2) - 10000
-        num_N_poly(3) = num_N_poly(3) - 10000
-        print *, "Max_N_Poly->", maxval(num_N_poly)
-        print *, "Max_N_Loc->", maxloc(num_N_poly)
-        num_N_poly(1) = num_N_poly(1) + 10000
-        num_N_poly(2) = num_N_poly(2) + 10000
-        num_N_poly(3) = num_N_poly(3) + 10000
+        print *, "Min_N_Poly->", minval(num_N_poly(4:))
+        print *, "Min_N_Loc->", minloc(num_N_poly(4:))+3
+        print *, "Max_N_Poly->", maxval(num_N_poly(4:))
+        print *, "Max_N_Loc->", maxloc(num_N_poly(4:))+3
         print *, "Tot_Poly->", sum(num_N_poly)
       end if
       i = i+1
