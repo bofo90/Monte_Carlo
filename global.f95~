@@ -16,13 +16,13 @@ contains
 
         ! Number of beads 
         N = 250
-<<<<<<< HEAD
-        ! Number of polymers in case of PERM
-        N_POLY = 10000
-=======
+
         ! Number of polymers
+<<<<<<< HEAD
         N_POLY = 1000
->>>>>>> 48bf17615476ca997e33a4622d3cdfe776576480
+=======
+        N_POLY = 10000
+>>>>>>> c1b39806875ac3c700bc19e6b2c90be0728641fd
         ! Temperature (defined as the beta = 1/kT)
         beta = beta_in
 
