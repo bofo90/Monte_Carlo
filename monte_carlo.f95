@@ -69,7 +69,8 @@ contains
        if (energy .GE. 100) then
           weights(i) = 0._8
        else
-          weights(i) = exp(-energy)/N_tot/0.9475
+          !weights(i) = exp(-energy)/N_tot/0.9475
+          weights(i) = exp(-energy)/N_tot/0.8
           new_weight = new_weight + weights(i)
        end if
     end do

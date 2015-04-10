@@ -15,10 +15,10 @@ contains
         real(8), intent(in) :: beta_in
 
         ! Number of beads 
-        N = 250
+        N = 200
 
         ! Number of polymers
-        N_POLY = 10000
+        N_POLY = 1000
         ! Temperature (defined as the beta = 1/kT)
         beta = beta_in
 
