@@ -54,7 +54,7 @@ contains
           distance = possible_pos(:,i)-position(:,j)
           dist2 = dot_product(distance, distance)
           if (dist2 .LE. dist2_cut) then
-            if (dist2 < 0.25*sigma2) then
+            if (dist2 < 0.01*sigma2) then
               ! Avoid overflow by use an infinity energy
               ! ensure that when we increase N this value will increase
               energy = energy + N*1000
@@ -66,8 +66,8 @@ contains
           end if
        end do
        ! Cut the energy to avoid underflow
-       if (energy .GE. 40) then
-          weights(i) = 0
+       if (energy .GE. 100) then
+          weights(i) = 0._8
        else
           weights(i) = exp(-energy)/N_tot/0.9475
           new_weight = new_weight + weights(i)

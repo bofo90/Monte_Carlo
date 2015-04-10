@@ -14,7 +14,7 @@ contains
     real(8) :: distance
     real(8) :: r_mean(3)
 
-    if(weight > 0._8) then
+    if(weight .GE. 0._8) then
        num_N_poly(pos_now) = num_N_poly(pos_now) + 1
        distance = dot_product(position(:,pos_now),position(:,pos_now))
        rsqrsqr(pos_now) = rsqrsqr(pos_now) + (distance**2) * weight

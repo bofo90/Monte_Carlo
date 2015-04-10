@@ -71,7 +71,7 @@ contains
              call random_number(random)
              if(random < 0.5_8) then
                 pol_weight = pol_weight * 2
-                !print *, pos_now, "PRUNE", pol_weight, up_limit, low_limit
+                !print *, pos_now, "KEEP", pol_weight, up_limit, low_limit
                 call add_bead(position, pol_weight, pos_now+1, perm)
              end if
           else
@@ -94,7 +94,7 @@ contains
 
     real(8), intent(out) :: up_limit, low_limit
     integer, intent(in) :: pos_now
-    real(8), parameter :: alpha_low = 1, alpha_up = 2.1
+    real(8), parameter :: alpha_low = 0.2, alpha_up = 2.9
     real(8) :: weight_avg
 
     if (num_N_poly(pos_now) .GE. 5) then
