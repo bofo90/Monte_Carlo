@@ -5,7 +5,7 @@ import numpy as np
 import pylab as P
 from math import *
 
-file_end = "PERM_2D"
+file_end = "2DRR100"
 
 data = np.loadtxt("data/rsq_"+file_end+".dat", skiprows=1)
 

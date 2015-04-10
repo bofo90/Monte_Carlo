@@ -5,10 +5,12 @@ import numpy as np
 import pylab as P
 from math import *
 
-betas = [0.92]
+betas = [0.92, 0.94]
 legend = []
 
-plt.figure(1)
+fig = plt.figure(1)
+ax = fig.add_subplot(1,1,1)
+ax.set_xscale('log')
 
 for beta in betas:
 	print beta
@@ -22,14 +24,14 @@ for beta in betas:
 
 	gyr = data[:,1]
 
-	#ratio = np.divide(rsq[2:], gyr[2:])
-	ratio = np.divide(gyr[2:], N[2:])
+	ratio = np.divide(rsq[2:], gyr[2:])
+	#ratio = np.divide(gyr[2:], N[2:])
 
 	legend_str = "{:.3f}".format(100*beta)
 	legend.append(legend_str)
 
-	plt.plot(np.divide(1,np.log(N[2:])), ratio)
-	#plt.plot(N[2:], rsq[2:])
+	#plt.plot(np.divide(1,np.log(N[2:])), ratio)
+	ax.plot(N[2:], ratio)
 
 plt.show()
 

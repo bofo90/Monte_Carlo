@@ -1,0 +1,68 @@
+This is BibTeX, Version 0.99d (TeX Live 2014/Debian)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: report.aux
+The style file: apsrev4-1.bst
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+Reallocated wiz_functions (elt_size=4) to 6000 items from 3000.
+Database file #1: reportNotes.bib
+Database file #2: report.bib.bib
+control{REVTEX41Control}, control.key{N/A}, control.author{N/A}, control.editor{N/A}, control.title{N/A}, control.pages{N/A}, control.year{N/A}, control.eprint{N/A}, 
+control{apsrev41Control}, control.key{N/A}, control.author{08}, control.editor{1}, control.title{}, control.pages{0}, control.year{1}, control.eprint{N/A}, 
+Warning--jnrlst (dependency: not reversed) set 1
+Reallocated singl_function (elt_size=4) to 100 items from 50.
+merlin.mbs apsrev4-1.bst 2010-07-25 4.21a (PWD, AO, DPC) hacked
+Control: key (0) 
+Control: author (8) initials jnrlst
+Control: editor formatted (1) identically to author
+Control: production of article title (-1) disabled
+Control: page (0) single
+Control: year (1) truncated
+Control: production of eprint (0) enabled
+Warning--missing publisher in mc_polymer_review
+You've used 7 entries,
+            5847 wiz_defined-function locations,
+            1646 strings with 15632 characters,
+and the built_in function-call counts, 5154 in all, are:
+= -- 307
+> -- 96
+< -- 59
++ -- 35
+- -- 37
+* -- 729
+:= -- 519
+add.period$ -- 5
+call.type$ -- 7
+change.case$ -- 24
+chr.to.int$ -- 21
+cite$ -- 8
+duplicate$ -- 543
+empty$ -- 353
+format.name$ -- 47
+if$ -- 950
+int.to.chr$ -- 1
+int.to.str$ -- 14
+missing$ -- 78
+newline$ -- 67
+num.names$ -- 15
+pop$ -- 251
+preamble$ -- 1
+purify$ -- 25
+quote$ -- 0
+skip$ -- 190
+stack$ -- 0
+substring$ -- 105
+swap$ -- 455
+text.length$ -- 10
+text.prefix$ -- 0
+top$ -- 10
+type$ -- 74
+warning$ -- 2
+while$ -- 22
+width$ -- 0
+write$ -- 94
+(There were 2 warnings)

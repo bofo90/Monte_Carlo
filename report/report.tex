@@ -4,11 +4,11 @@
 \begin{document}
 
 %Title of paper
-\title{Simulations of $\theta$ linear polymers in three dimensional continuous space}
+\title{Simulations of linear polymer chains in continuous space}
 
 \author{Agustin I\~niguez}
 \author{Eduardo Pavinato Olimpio}
-%\email[]{epolimpio@gmail.com}
+\email[]{All files on https://github.com/bofo90/Monte\_Carlo}
 
 \affiliation{ICCP - Delft University of Technology}
 
@@ -25,8 +25,14 @@
 \section{Introduction}
 % Put \label in argument of \section for cross-referencing
 %\section{\label{}}
-Description of theta polymers, LJ potential, etc.
-Eduardo Part!
+The simulation of the dynamics of linear polymer chains in solution has attracted a lot of interest over the years. For this purpose, several computational methods based on Monte Carlo simulations have been successfully used \cite{mc_polymer_review}. In general, these methods are applied in on- and off-lattice models, either in two or three dimensions adnd, depending on the conditions being studied, the potential energy included in the sampling changes. In this work, we focus our attention in off-lattice models for dilute polymers in bad solvent. This allows us to use a mesoscopic model in which we simulate the monomers (taken of unit length) as beads interacting through a Lennard-Jones potential:
+
+\begin{equation}
+	V(r) = 4 \epsilon \left[\left(\frac{\sigma}{r} \right)^{12} - \left(\frac{\sigma}{r} \right)^{6} + C_{\text{bias}}\right]
+\end{equation}
+where we use $\sigma = 0.8$ following \cite{Yong1996, ICCPBook}. The value of $\epsilon$ is defined through the non-dimensional variable $\epsilon/k_B T$ as in \cite{Grassberger1997, Yong1996}. Contrary to what is done in the previous cited references, we folloewd the idea in \cite{mc_polymer_review} and truncate the potential at twice the minimum of the potential, $r_{\text{cut}} = 2 \times 2^{1/6} \sigma$, including a small bias to make the potential zero at $r_{\text{cut}}$, $C_{\text{bias}} = 127/16384$.
+
+!!!HERE I WRITE THE BLA BLA OF WHAT WE HAVE DONE IN THE PAPER!!!
 
 \section{Simulation description \label{description}}
 Agustin Part!
@@ -39,6 +45,11 @@ Agustin Part!
 
 \section{Comparison of the methods}
 
+\begin{figure}[ht]
+	\includegraphics[scale=0.4]{comparison.png}
+	\caption{Comparison of the squared end-to-end distance obtained using Rosenbluth and PERM methods for the three dimensional off-latice model. The results are compared with the predicted line, in which $<R^2> = a(N-1)^{2 \nu}$, with $\nu = 0.5876$ \cite{Clisby2010}. We used the data to obtain the parameter $a$. The blue circles show the population of polymers with different N using the PERM algorithm. \label{comparison}}
+\end{figure}
+
 Agustin Part! Talk here about end-to-end distance
 
 \section{Results}
@@ -50,6 +61,6 @@ Eduardo Part!
 Agustin Part!
 
 % Create the reference section using BibTeX:
-%\bibliography{Sciences.bib}
+\bibliography{report.bib}
 
 \end{document}

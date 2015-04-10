@@ -8,8 +8,13 @@ program Polymer
   implicit none
 
   integer(8) :: i, j
-  real(8) :: betas(1) = (/ 0.94d0 /)
+<<<<<<< HEAD
+  real(8) :: betas(3) = (/ 0.98d0, 0.96d0, 0.92d0 /)
   logical, parameter :: run_2d = .FALSE.
+=======
+  real(8) :: betas(1) = (/ 1d0 /)
+  logical, parameter :: run_2d = .TRUE.
+>>>>>>> c9e52a9ae085cefd076372e9cff7b0ca458c50a5
   logical, parameter :: perm = .TRUE.
   character(len=7) :: suffix
   character(len=3) :: beta_str
@@ -20,7 +25,7 @@ program Polymer
 
     write(beta_str, "(I0.3)") int(100*betas(j))
 
-    suffix = "BETA" // beta_str
+    suffix = "2DPE" // beta_str
 
     print *, suffix
 
@@ -28,7 +33,7 @@ program Polymer
     call init_files(suffix)
     i = 1
     
-    do while (minval(num_N_poly) < N_POLY .AND. i .LE. 1d5)
+    do while (minval(num_N_poly) < N_POLY .AND. i .LE. 1d4)
       call init_vectors()
       call chain_grow(i, perm)
       if (mod(i,10) == 0) then

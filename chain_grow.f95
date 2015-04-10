@@ -63,7 +63,7 @@ contains
        if (pos_now < N .and. pol_weight > 0) then
           if (pol_weight > up_limit) then
              pol_weight = pol_weight * 0.5
-             !print *, pos_now, "ENRICH", pol_weight, up_limit, low_limit
+             print *, pos_now, "ENRICH", pol_weight, up_limit, low_limit
              call add_bead(position, pol_weight, pos_now+1, perm)
              call add_bead(position, pol_weight, pos_now+1, perm)
           else if(pol_weight < low_limit) then
@@ -71,15 +71,19 @@ contains
              call random_number(random)
              if(random < 0.5_8) then
                 pol_weight = pol_weight * 2
-                !print *, pos_now, "KEEP", pol_weight, up_limit, low_limit
+                print *, pos_now, "KEEP", pol_weight, up_limit, low_limit
                 call add_bead(position, pol_weight, pos_now+1, perm)
-             end if
+              else
+                print *, pos_now, "PRUNE", pol_weight, up_limit, low_limit
+              end if
           else
              call add_bead(position, pol_weight, pos_now+1, perm)
           end if
        else
           if(pos_now == N .AND. num_N_poly(pos_now) < (num_250bead_no_PERM+7) ) then
              call write_pos(position)
+          else
+            print *, pos_now, "KILL", pol_weight, up_limit, low_limit
           end if
        end if
     else
@@ -94,10 +98,10 @@ contains
 
     real(8), intent(out) :: up_limit, low_limit
     integer, intent(in) :: pos_now
-    real(8), parameter :: alpha_low = 0.2, alpha_up = 2.9
+    real(8), parameter :: alpha_low = 1, alpha_up = 2
     real(8) :: weight_avg
 
-    if (num_N_poly(pos_now) .GE. 5) then
+    if (num_N_poly(pos_now) .GE. 3) then
       weight_avg = sum_weight(pos_now)/num_N_poly(pos_now)
       up_limit = alpha_up * weight_avg
       low_limit = alpha_low * weight_avg
