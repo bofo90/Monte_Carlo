@@ -24,45 +24,45 @@ Control: page (0) single
 Control: year (1) truncated
 Control: production of eprint (0) enabled
 Warning--missing publisher in mc_polymer_review
-You've used 7 entries,
+You've used 9 entries,
             5847 wiz_defined-function locations,
-            1646 strings with 15632 characters,
-and the built_in function-call counts, 5154 in all, are:
-= -- 307
-> -- 96
-< -- 59
-+ -- 35
-- -- 37
-* -- 729
-:= -- 519
-add.period$ -- 5
-call.type$ -- 7
-change.case$ -- 24
-chr.to.int$ -- 21
-cite$ -- 8
-duplicate$ -- 543
-empty$ -- 353
-format.name$ -- 47
-if$ -- 950
+            1662 strings with 16124 characters,
+and the built_in function-call counts, 7013 in all, are:
+= -- 435
+> -- 141
+< -- 71
++ -- 49
+- -- 47
+* -- 1010
+:= -- 705
+add.period$ -- 7
+call.type$ -- 9
+change.case$ -- 32
+chr.to.int$ -- 23
+cite$ -- 10
+duplicate$ -- 718
+empty$ -- 492
+format.name$ -- 75
+if$ -- 1321
 int.to.chr$ -- 1
-int.to.str$ -- 14
-missing$ -- 78
-newline$ -- 67
-num.names$ -- 15
-pop$ -- 251
+int.to.str$ -- 16
+missing$ -- 101
+newline$ -- 73
+num.names$ -- 21
+pop$ -- 327
 preamble$ -- 1
-purify$ -- 25
+purify$ -- 35
 quote$ -- 0
-skip$ -- 190
+skip$ -- 258
 stack$ -- 0
-substring$ -- 105
-swap$ -- 455
-text.length$ -- 10
+substring$ -- 151
+swap$ -- 618
+text.length$ -- 15
 text.prefix$ -- 0
 top$ -- 10
-type$ -- 74
+type$ -- 101
 warning$ -- 2
-while$ -- 22
+while$ -- 28
 width$ -- 0
-write$ -- 94
+write$ -- 110
 (There were 2 warnings)

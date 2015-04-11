@@ -16,7 +16,7 @@
 
 \begin{abstract}
 % insert abstract here
-	ABSTRACT HERE!
+	In this work we discuss the computational study of mesoscopic linear polymer chain model under Lennard-Jones attraction potential. For this we used an off-lattice three-dimensional setup, implemented using the Rosenbluth method and the Prune-Enriched Rosenbluth Method (PERM), checking the Flory exponent $\nu$. Furthermore we used the PERM implentation to obtain some preliminary results for the radius of gyration, comparing with those in literature.
 \end{abstract}
 
 \maketitle
@@ -32,7 +32,7 @@ The simulation of the dynamics of linear polymer chains in solution has attracte
 \end{equation}
 where we use $\sigma = 0.8$ following \cite{Yong1996, ICCPBook}. The value of $\epsilon$ is defined through the non-dimensional variable $\epsilon/k_B T$ as in \cite{Grassberger1997, Yong1996}. Contrary to what is done in the previous cited references, we folloewd the idea in \cite{mc_polymer_review} and truncate the potential at twice the minimum of the potential, $r_{\text{cut}} = 2 \times 2^{1/6} \sigma$, including a small bias to make the potential zero at $r_{\text{cut}}$, $C_{\text{bias}} = 127/16384$.
 
-!!!HERE I WRITE THE BLA BLA OF WHAT WE HAVE DONE IN THE PAPER!!!
+In the following sections, how we implemented this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained using Rosenbluth method and Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Floru exponent). Furthermore, we discuss how we used PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
 
 \section{Simulation description \label{description}}
 Agustin Part!
@@ -47,15 +47,47 @@ Agustin Part!
 
 \begin{figure}[ht]
 	\includegraphics[scale=0.4]{comparison.png}
-	\caption{Comparison of the squared end-to-end distance obtained using Rosenbluth and PERM methods for the three dimensional off-latice model. The results are compared with the predicted line, in which $<R^2> = a(N-1)^{2 \nu}$, with $\nu = 0.5876$ \cite{Clisby2010}. We used the data to obtain the parameter $a$. The blue circles show the population of polymers with different N using the PERM algorithm. \label{comparison}}
+	\caption{Comparison of the squared end-to-end distance obtained using Rosenbluth and PERM methods for the three dimensional off-latice model. The results are compared with the predicted line, in which $<R^2> = a(N-1)^{2 \nu}$, with $\nu = 0.5876$ \cite{Clisby2010}. We used the data to obtain the parameter $a$. The blue circles show the population of polymers with different N using the PERM algorithm. The data was obtained using $\epsilon/k_B T = 0.25$\label{comparison}}
 \end{figure}
 
 Agustin Part! Talk here about end-to-end distance
 
-\section{Results}
+\section{Radius of gyration}
 
-Follow PERM paper, I'll talk about the gyration radius here.
-Eduardo Part!
+In this section we discuss some results obtained using PERM algorithm for three dimensional off-lattice chains. The idea is to verify some concepts developed in the literature regarding the radius of gyration.
+
+The radius of gyration measures the average distance that the monomers are from the polymer center of mass ($\vec{r}_{\text{CM}}$). We can write the radius of gyration as:
+
+\begin{equation}
+	R_g^2 = \frac{1}{N}\sum_{k=1}^N \left(\vec{r}_k - \vec{r}_{\text{CM}}\right)^2 = - \vec{r}_{\text{CM}} \cdot \vec{r}_{\text{CM}} + \frac{1}{N}\sum_{k=1}^N \left(\vec{r}_k \cdot \vec{r}_k \right)
+\end{equation}
+where $N$ is the number of monomers in the polymer chain and $\vec{r}_k$ is the k-th monomer position.
+
+We average the calculated radius of gyration over all the polymer samples to obtain its value for each polymer chain size $N$. In Figure \ref{gyration_idea} we show six polymer samples with $N=250$ obtained with the algorithm and we draw a sphere with radius $<R_g>$, with the average taken from 10000 samples of $N=250$ polymer chains. It is possible to verify that, as expected, the polymers are mostly contained inside the sphere.  
+
+\begin{figure}[ht]
+	\includegraphics[scale=0.4]{gyration_many.png}
+	\caption{Six samples of polymers obtained with the PERM algorithm for $N=250$ and a sphere of radius $<R_g>$, where the radius of gyration was obtained through the average of 10000 samples. The data is taken for $\epsilon/k_B T = 0.235$. On each plane we show the projection of the sphere and the shadow of the polymers. \label{gyration_idea}}
+\end{figure}
+
+According to the discussion in \cite{Smith1975} the end-to-end distance and the radius of gyration must have the same dependence on $N$ and, therefore, we would expect the radius of gyration to grow as $N^{\nu}$ with $\nu = 0.5876$ as we obtained for the end-to-end distance. However, for $\epsilon/k_B T = 0.25$ we obtained a behavior close to $\nu = 0.75$ (Figure \ref{gyr_fit}).
+
+\begin{figure}[ht]
+	\includegraphics[scale=0.4]{gyr_fit.png}
+	\caption{Squared radius of gyration as a function of the number of monomers $N$ for $\epsilon/k_B T = 0.25$. The results are compared with the predicted line, in which $<R_g^2> = a(N-1)^{2 \nu}$. The fit predict $\nu = 0.75$ and not the expected value $\nu = 0.5876$ of Figure \ref{comparison}. \label{gyr_fit}}
+\end{figure}
+
+There are some explanations for this differece. First, we should note that the radius of gyration is more sensible to changes in the polymer configuration than the end-to-end distance, which means that if we have some kind of transition, it will manifest first on it. Indeed, as can be seen in \cite{Witt1996}, at $\epsilon/k_B T \approx 0.25$ we have a transition from the ideal chain. For this matter, we try to reproduce the results of \cite{Grassberger1997} for the swelling factor $<R_g^2>/N$ (Figure \ref{swell}) and the ratio $<R^2>/<R_g^2>$ (Figure \ref{ratio}) for different temperatures. The values obtained in these graphs and the behavior for low $N$ agree with those in \cite{Grassberger1997}. However, for large $N$ our result does not show the differences of $<R_g^2>/N$ obtained in that work (in which there is a swelling of the polymer), and for $<R^2>/<R_g^2>$ the behavior is similar but we lack statistics to be conclusive on that. Further work has to be done here to imprive the results for large $N$. These differences can also be due to the fact that in the previous citted papers, the authors use variable monomer length, with an unit variance Gaussian behavior whereas in our work we use a fixed monomer length. Here we could also work further to include this Gaussian behavior. 
+
+\begin{figure}[ht]
+	\includegraphics[scale=0.4]{swelling.png}
+	\caption{Swell \label{swell}}
+\end{figure}
+
+\begin{figure}[ht]
+	\includegraphics[scale=0.4]{ratio.png}
+	\caption{Ratio \label{ratio}}
+\end{figure}
 
 \section{Conclusion \label{conclusion}}
 Agustin Part!

@@ -9,7 +9,7 @@ program Polymer
 
   integer(8) :: i, j
   real(8) :: betas(1) = (/ 1d0 /)
-  logical, parameter :: run_2d = .TRUE.
+  logical, parameter :: run_2d = .FALSE.
   logical, parameter :: perm = .TRUE.
   character(len=7) :: suffix
   character(len=3) :: beta_str
