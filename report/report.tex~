@@ -78,12 +78,27 @@ Contrary to other evolutionary algorithms we use a depth first approach. This me
 
 \section{Comparison of the methods}
 
+To compare successfully both methods we use the end-to-end distance. This is, as the name implies, the distance between the first monomer and the last one. We use this property because the Rosenbluth Method generates polymer populations for all the length up to the maximum, 250 beads in our case. 
+
+As discussed before the polymer behaves as a SAW. The end-to-end distance ($R$) in these walks scales with the length of the polymer ($N$) as:
+
+\begin{equation}
+	R \propto N^\nu
+\end{equation}
+
+
+where $\nu$ is the Floru exponent and has a value for three dimensions of 0.5876 \cite{Clisby2010}.
+
+In Figure \ref{comparison} we plot the end-to-end distance for the two methods with respect to the number of beads. For the Rosenbluth Method we grow 1000 polymers until the maximum length of 250. For the PERM the number of polymers for each length is also plotted. We compare both methods to the theoretical behavior. 
+
 \begin{figure}[ht]
 	\includegraphics[scale=0.4]{comparison.png}
 	\caption{Comparison of the squared end-to-end distance obtained using Rosenbluth and PERM methods for the three dimensional off-latice model. The results are compared with the predicted line, in which $<R^2> = a(N-1)^{2 \nu}$, with $\nu = 0.5876$ \cite{Clisby2010}. We used the data to obtain the parameter $a$. The blue circles show the population of polymers with different N using the PERM algorithm. The data was obtained using $\epsilon/k_B T = 0.25$\label{comparison}}
 \end{figure}
 
-Agustin Part! Talk here about end-to-end distance
+The Rosenbluth Method reproduces the scaling behavior for short polymers, but after the 100th bead approximately the error starts to increase and deviates from the theoretical scaling. The reason behind this error is that the R begins to fluctuate a lot. These fluctuations are due to the acceptance of any polymer with weight higher than zero. So when increasing the number of beads, the distribution of the weight become wider, leaving just a few polymers dominate the statistical (polymers with extremely high probability). 
+
+To avoid this dominance, the PERM uses a genetic algorithm to enrich the high probability polymers and prune the low probability, leaving a narrower weight distribution. We can see that this method scales the R according to the theoretical result. The problem with it is the choice of the thresholds. They are very sensitive and when choosing them wrong we get either a lot of pruning (almost no polymer grow to 250 beads) or  a lot of enrichment (the computational time increases exponentially). This is the reason why we do not get a highly constant population.
 
 \section{Radius of gyration}
 
