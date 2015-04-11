@@ -25,7 +25,7 @@
 \section{Introduction}
 % Put \label in argument of \section for cross-referencing
 %\section{\label{}}
-The simulation of the dynamics of linear polymer chains in solution has attracted a lot of interest over the years. For this purpose, several computational methods based on Monte Carlo simulations have been successfully used \cite{mc_polymer_review}. In general, these methods are applied in on- and off-lattice models, either in two or three dimensions and, depending on the conditions being studied, the potential energy included in the sampling changes. In this work, we focus our attention in off-lattice models for dilute polymers in bad solvent. This allows us to use a mesoscopic model in which we simulate the monomers (taken of unit length) as beads interacting through a Lennard-Jones potential:
+The simulation of the dynamics of linear polymer chains in solution has attracted a lot of interest over the years. For this purpose, several computational methods based on Monte Carlo simulations have been successfully used \cite{mc_polymer_review}. In general, these methods are applied in on- and off-lattice models, either in two or three dimensions adnd, depending on the conditions being studied, the potential energy included in the sampling changes. In this work, we focus our attention in off-lattice models for dilute polymers in bad solvent. This allows us to use a mesoscopic model in which we simulate the monomers (taken of unit length) as beads interacting through a Lennard-Jones potential:
 
 \begin{equation}
 	V(r) = 4 \epsilon \left[\left(\frac{\sigma}{r} \right)^{12} - \left(\frac{\sigma}{r} \right)^{6} + C_{\text{bias}}\right]
