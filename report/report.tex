@@ -35,13 +35,49 @@ where we use $\sigma = 0.8$ following \cite{Yong1996, ICCPBook}. The value of $\
 In the following sections, how we implemented this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained using Rosenbluth method and Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Floru exponent). Furthermore, we discuss how we used PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
 
 \section{Simulation description \label{description}}
-Agustin Part!
+Our simulation describes a polymer of 250 monomers in three dimensions off latice. Each monomer is represented by a bead with a fixed distance from their neighbors. Each bead is represented as a point in space. The beads have interactions with each other following the Lennard-Jones potential previously described. This will generate a self-avoiding walk (SAW) due to the repulsion at short distances. To simulate the SAW effectively there exist many algorithms. 
+
+The first method we use is the Rosenbluth Method. This is based on the probability of finding the polymer in a specific configuration following a canonical distribution based on a given temperature.  The second is the Pruned-Enriched Rosenbluth Method (PERM). This being the improvement of the first one in order to avoid polymers with low probability. From the latter one we calculate the gyration radius of the polymer as an average over the ensemble.
 
 \subsection{Rosenbluth Method}
-Agustin Part!
+The Rosenbluth Method consist in adding beads one by one avoiding high energy configurations. For this we put the first bead on the origin and the second one on (1,0,0) since the fixed distance between beads is 1. For the next ones we need to discretise the available space. We divide it in 12 possibilities (4 different $\theta$ and 3 $\phi$ in spherical coordinates) and calculate the energy of all of them. 
+
+From the energy we get the weights of each configuration:
+
+\begin{equation}
+	w_j^{(l)} = \exp[-E(\theta_j)/k_BT]
+\end{equation}
+
+We accept the jth configuration with a probability of $w_j^{(l)}/W^{(l)}$ where $W^{(l)}$ is the sum of all the weights at a determine bead $l$. For this we generate a random number between 0 and 1 and check to which probability it corresponds. 
+
+With this method we generate a polymer with probability of:
+
+\begin{equation}
+	P = \prod_{l=3}^N \frac{w_j^{(l)}}{W^{(l)}}= \exp[-E_{total}/k_BT]\prod_{l=3}^N \frac{1}{W^{(l)}}
+\end{equation}
+
+As we can see we are off by a factor of $\prod_lW^{(l)}$ from the total Boltzmann weight of the polymer. So to have accurate properties we need to correct them by this weight factor. This is the 'method A' described in ref \cite{Josbook}.
 
 \subsection{PERM Method}
-Agustin Part!
+The problem with the Rosenbluth Method is that polymers with very low probability will still be produced as well with extreme high probability. This problem will be deeper treated later in the comparison. To avoid this wide distribution of weights we have to control the polymer's population.
+
+First we need to make an enrichment. This means that at any $l$ step we compare the weight with a suitable chosen threshold $W_l^>$. If the polymer weight at $l$ bead is bigger than this threshold we make an additional copy of it and we half the weight of both, the original and the copy. Then we let them grow until the final length. With this we are avoiding extreme high probability polymers. 
+
+On the other hand if the weight is less than another threshold $W_l^<$ we prune. The pruning is made through a random generated number. If this number is less than 0.5 we leave the polymer grow but with the double of the weight. On the contrary if it is bigger we cut it. 
+
+With this enrichment and pruning we are not introducing any additional bias so we can chose any thresholds for our convenience. However bad choices of these thresholds lead to inefficiency on the program. To have a small statistical advantage we run the program without any enrichment or prune for 10 times to after calculate the thresholds: 
+
+\begin{equation}
+\begin{split}
+	W_l^> &= 3 \times \frac{1}{l}\sum_{n=3}^l W^{(n)} \\
+    W_l^< &= 0.2 \times \frac{1}{l}\sum_{n=3}^l W^{(n)}
+\end{split}
+\end{equation}
+
+Contrary to other evolutionary algorithms we use a depth first approach. This means that we follow a single polymer until it ends before we continue to another polymer instead of having a constant population and simultaneously grow all of them (breadth first approach). We implement this by means of recursion having a minimized storage use and a more efficient and elegant code.\cite{grassberger} 
+
+
+
 
 \section{Comparison of the methods}
 
@@ -51,6 +87,10 @@ Agustin Part!
 \end{figure}
 
 Agustin Part! Talk here about end-to-end distance
+
+
+
+
 
 \section{Radius of gyration}
 
