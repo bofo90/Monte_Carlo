@@ -25,18 +25,14 @@
 \section{Introduction}
 % Put \label in argument of \section for cross-referencing
 %\section{\label{}}
-The simulation of the dynamics of linear polymer chains in solution has attracted a lot of interest over the years. For this purpose, several computational methods based on Monte Carlo simulations have been successfully used \cite{mc_polymer_review}. In general, these methods are applied in on- and off-lattice models, either in two or three dimensions and, depending on the conditions being studied, the potential energy included in the sampling changes. In this work, we focus our attention in off-lattice models for dilute polymers in bad solvent. This allows us to use a mesoscopic model in which we simulate the monomers (taken of unit length) as beads interacting through a Lennard-Jones potential:
+The simulation of the dynamics of linear polymer chains in solution has attracted a lot of interest over the years. For this purpose, several computational methods based on Monte Carlo simulations have been successfully used \cite{mc_polymer_review}. In general, these methods are applied in on- and off-lattice models, either in two or three dimensions and, depending on the conditions being studied, the potential energy included in the sampling changes. In this work, we focus our attention in off-lattice models for dilute polymers in bad solvent. This allows us to use a mesoscopic model in which we simulate the monomers as beads interacting through a Lennard-Jones potential:
 
 \begin{equation}
 	V(r) = 4 \epsilon \left[\left(\frac{\sigma}{r} \right)^{12} - \left(\frac{\sigma}{r} \right)^{6} + C_{\text{bias}}\right]
 \end{equation}
 where we use $\sigma = 0.8$ following \cite{Yong1996, ICCPBook}. The value of $\epsilon$ is defined through the non-dimensional variable $\epsilon/k_B T$ as in \cite{Grassberger1997, Yong1996}. Contrary to what is done in the previous cited references, we folloewd the idea in \cite{mc_polymer_review} and truncate the potential at twice the minimum of the potential, $r_{\text{cut}} = 2 \times 2^{1/6} \sigma$, including a small bias to make the potential zero at $r_{\text{cut}}$, $C_{\text{bias}} = 127/16384$.
 
-<<<<<<< HEAD
-In the following sections, we show how we implemented this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained using Rosenbluth method and Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Floru exponent). Furthermore, we discuss how we used PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
-=======
-In the following sections, how we implemented this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained using Rosenbluth method and Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Flory exponent). Furthermore, we discuss how we used PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
->>>>>>> d401a87211b693bc701b2cb934870b2bbdea0f93
+In the following sections, we show how we implement this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained by the Rosenbluth method and the Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Floru exponent). Furthermore, we discuss how we use PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
 
 \section{Simulation description \label{description}}
 Our simulation describes a polymer of 250 monomers in three dimensions off-lattice. Each monomer is represented by a bead with a fixed distance from their neighbors. Each bead is represented as a point in space. The beads have interactions with each other following the Lennard-Jones potential previously described. This will generate a self-avoiding walk (SAW) due to the repulsion at short distances. To simulate the SAW effectively there exist many algorithms. 
@@ -95,7 +91,7 @@ In Figure \ref{comparison} we plot the end-to-end distance for the two methods w
 
 \begin{figure}[tb]
 	\includegraphics[scale=0.4]{comparison.png}
-	\caption{Comparison of the squared end-to-end distance obtained using Rosenbluth and PERM methods for the three dimensional off-latice model. The results are compared with the predicted line, in which $<R^2> = a(N-1)^{2 \nu}$, with $\nu = 0.5876$ \cite{Clisby2010}. We used the data to obtain the parameter $a$. The blue circles show the population of polymers with different N using the PERM algorithm. The data was obtained using $\epsilon/k_B T = 0.25$\label{comparison}}
+	\caption{Comparison of the squared end-to-end distance obtained using Rosenbluth and PERM methods for the three dimensional off-latice model. The results are compared with the predicted line, in which $\langle R^2 \rangle = a(N-1)^{2 \nu}$, with $\nu = 0.5876$ \cite{Clisby2010}. We used the data to obtain the parameter $a$. The blue circles show the population of polymers with different N using the PERM algorithm. The data was obtained using $\epsilon/k_B T = 0.25$\label{comparison}}
 \end{figure}
 
 The Rosenbluth Method reproduces the scaling behavior for short polymers, but after the 100th bead approximately the error starts to increase and deviates from the theoretical scaling. The reason behind this error is that the R begins to fluctuate a lot. These fluctuations are due to the acceptance of any polymer with weight higher than zero. So when increasing the number of beads, the distribution of the weight become wider, leaving just a few polymers dominate the statistical (polymers with extremely high probability). 
@@ -113,31 +109,31 @@ The radius of gyration measures the average distance that the monomers are from 
 \end{equation}
 where $N$ is the number of monomers in the polymer chain and $\vec{r}_k$ is the k-th monomer position.
 
-We average the calculated radius of gyration over all the polymer samples to obtain its value for each polymer chain size $N$. In Figure \ref{gyration_idea} we show six polymer samples with $N=250$ obtained with the algorithm and we draw a sphere with radius $<R_g>$, with the average taken from 10000 samples of $N=250$ polymer chains. It is possible to verify that, as expected, the polymers are mostly contained inside the sphere.  
+We average the calculated radius of gyration over all the polymer samples to obtain its value for each polymer chain size $N$. In Figure \ref{gyration_idea} we show six polymer samples with $N=250$ obtained with the algorithm and we draw a sphere with radius $\langle R_g\rangle$, with the average taken from 10000 samples of $N=250$ polymer chains. It is possible to verify that, as expected, the polymers are mostly contained inside the sphere.  
 
 \begin{figure}[tb]
 	\includegraphics[scale=0.4]{gyration_many.png}
-	\caption{Six samples of polymers obtained with the PERM algorithm for $N=250$ and a sphere of radius $<R_g>$, where the radius of gyration was obtained through the average of 10000 samples. The data is taken for $\epsilon/k_B T = 0.235$. On each plane we show the projection of the sphere and the shadow of the polymers. \label{gyration_idea}}
+	\caption{Six samples of polymers obtained with the PERM algorithm for $N=250$ and a sphere of radius $\langle R_g\rangle$, where the radius of gyration was obtained through the average of 10000 samples. The data is taken for $\epsilon/k_B T = 0.235$. On each plane we show the projection of the sphere and the shadow of the polymers. \label{gyration_idea}}
 \end{figure}
 
 According to the discussion in \cite{Smith1975} the end-to-end distance and the radius of gyration must have the same dependence on $N$ and, therefore, we expect the radius of gyration to grow as $N^{\nu}$ with $\nu = 0.5876$ as we obtained for the end-to-end distance. Indeed, for $\epsilon/k_B T = 0.245$ we obtained a behavior close to $\nu = 0.5876$ (Figure \ref{gyr_fit}).
 
 \begin{figure}[tb]
 	\includegraphics[scale=0.35]{gyr_fit.png}
-	\caption{Squared radius of gyration as a function of the number of monomers $N$ for $\epsilon/k_B T = 0.25$. The results are compared with the predicted line, in which $<R_g^2> = a(N-1)^{2 \nu}$ with $\nu = 0.5876$ as in Figure \ref{comparison}, according to \cite{Smith1975}. \label{gyr_fit}}
+	\caption{Squared radius of gyration as a function of the number of monomers $N$ for $\epsilon/k_B T = 0.25$. The results are compared with the predicted line, in which $\langle R_g^2\rangle = a(N-1)^{2 \nu}$ with $\nu = 0.5876$ as in Figure \ref{comparison}, according to \cite{Smith1975}. \label{gyr_fit}}
 \end{figure}
 
 \begin{figure}[tb]
 	\includegraphics[scale=0.35]{swelling.png}
-	\caption{Swelling factor $<R_g^2>/N$ as a function of $1/\log(N)$ for different temperatures as in \cite{Grassberger1997} \label{swell}}
+	\caption{Swelling factor $\langle R_g^2\rangle/N$ as a function of $1/\log(N)$ for different temperatures as in \cite{Grassberger1997} \label{swell}}
 \end{figure}
 
 \begin{figure}[tb]
 	\includegraphics[scale=0.35]{ratio.png}
-	\caption{Ratio $<R^2>/<R_g^2>$ as a function of $1/\log(N)$ for different temperatures as in \cite{Grassberger1997}. \label{ratio}}
+	\caption{Ratio $\langle R^2\rangle/\langle R_g^2\rangle$ as a function of $1/\log(N)$ for different temperatures as in \cite{Grassberger1997}. \label{ratio}}
 \end{figure}
 
-Finally, we briefly studied the behavior of the above results with the temperature. First, we should note that the radius of gyration is more sensible to changes in the polymer configuration than the end-to-end distance, which means that if we have some kind of transition, it will manifest first on it. Indeed, as can be seen in \cite{Witt1996}, at $\epsilon/k_B T \approx 0.25$ we should have a transition from the ideal chain. For this matter, we try to reproduce the results of \cite{Grassberger1997} for the swelling factor $<R_g^2>/N$ (Figure \ref{swell}) and the ratio $<R^2>/<R_g^2>$ (Figure \ref{ratio}) for different temperatures. The values obtained in these graphs and the behavior for low $N$ agree with those in \cite{Grassberger1997}. However, for large $N$ our result does not show the differences of $<R_g^2>/N$ obtained in that work (in which there is a swelling of the polymer), and for $<R^2>/<R_g^2>$ the behavior is similar but we lack statistics to be conclusive on that. Further work has to be done here to imprive the results for large $N$. These differences can be due to the fact that in the previous citted papers, the authors use variable monomer length, with an unit variance Gaussian behavior whereas in our work we use a fixed monomer length. Here we could also work further to include this Gaussian behavior. 
+Finally, we briefly studied the behavior of the above results with the temperature. First, we should note that the radius of gyration is more sensible to changes in the polymer configuration than the end-to-end distance, which means that if we have some kind of transition, it will manifest first on it. Indeed, as can be seen in \cite{Witt1996}, at $\epsilon/k_B T \approx 0.25$ we should have a transition from the ideal chain. For this matter, we try to reproduce the results of \cite{Grassberger1997} for the swelling factor $\langle R_g^2\rangle/N$ (Figure \ref{swell}) and the ratio $\langle R^2\rangle/\langle R_g^2\rangle$ (Figure \ref{ratio}) for different temperatures. The values obtained in these graphs and the behavior for low $N$ agree with those in \cite{Grassberger1997}. However, for large $N$ our result does not show the differences of $\langle R_g^2\rangle/N$ obtained in that work (in which there is a swelling of the polymer), and for $\langle R^2\rangle/\langle R_g^2\rangle$ the behavior is similar but we lack statistics to be conclusive on that. Further work has to be done here to imprive the results for large $N$. These differences can be due to the fact that in the previous citted papers, the authors use variable monomer length, with an unit variance Gaussian behavior whereas in our work we use a fixed monomer length. Here we could also work further to include this Gaussian behavior. 
 
 \section{Conclusion \label{conclusion}}
 Agustin Part!
