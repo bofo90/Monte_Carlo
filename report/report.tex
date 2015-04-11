@@ -6,7 +6,7 @@
 %Title of paper
 \title{Simulations of linear polymer chains in continuous space}
 
-\author{Agustin I\~niguez}
+\author{Fernando Agust\'in I\~niguez R\'abago}
 \author{Eduardo Pavinato Olimpio}
 \email[]{All files on https://github.com/bofo90/Monte\_Carlo}
 
@@ -32,7 +32,7 @@ The simulation of the dynamics of linear polymer chains in solution has attracte
 \end{equation}
 where we use $\sigma = 0.8$ following \cite{Yong1996, ICCPBook}. The value of $\epsilon$ is defined through the non-dimensional variable $\epsilon/k_B T$ as in \cite{Grassberger1997, Yong1996}. Contrary to what is done in the previous cited references, we folloewd the idea in \cite{mc_polymer_review} and truncate the potential at twice the minimum of the potential, $r_{\text{cut}} = 2 \times 2^{1/6} \sigma$, including a small bias to make the potential zero at $r_{\text{cut}}$, $C_{\text{bias}} = 127/16384$.
 
-In the following sections, how we implemented this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained using Rosenbluth method and Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Floru exponent). Furthermore, we discuss how we used PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
+In the following sections, we show how we implemented this model in an off-lattice three dimensional Monte-Carlo, comparing the results obtained using Rosenbluth method and Prune-Enriched Rosenbluth Method (PERM) for the conformational parameter $\nu$ (called Floru exponent). Furthermore, we discuss how we used PERM to analyse the behavior of the radius of gyration under different temperatures, comparing with the literature.
 
 \section{Simulation description \label{description}}
 Our simulation describes a polymer of 250 monomers in three dimensions off-lattice. Each monomer is represented by a bead with a fixed distance from their neighbors. Each bead is represented as a point in space. The beads have interactions with each other following the Lennard-Jones potential previously described. This will generate a self-avoiding walk (SAW) due to the repulsion at short distances. To simulate the SAW effectively there exist many algorithms. 
